@@ -1,14 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "equilibrium", "equilibrium\equilibrium.csproj", "{80E7AC8A-EC13-41D9-A969-F3E45FEC4217}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4CDAFDF4-5D37-4419-A311-0171FC687FC2}"
-	ProjectSection(SolutionItems) = preProject
-		btConManager.cs = btConManager.cs
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kuntakinte", "kuntakinte\kuntakinte.vcxproj", "{F60304A6-1412-466E-B954-B667812AAF4E}"
 EndProject

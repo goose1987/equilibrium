@@ -30,6 +30,7 @@ using Windows.Devices.Geolocation;
 
 using BluetoothConnectionManager;
 using kuntakinte;
+using Windows.Phone.Speech.Recognition;
 
 
 namespace equilibrium
@@ -44,6 +45,13 @@ namespace equilibrium
         float pitch;
         float yaw;
 
+
+        //declare speechrecognizerUI 
+        SpeechRecognizerUI recoWithUI;
+
+
+
+
         // Constructor
         public MainPage()
         {
@@ -57,7 +65,22 @@ namespace equilibrium
 
 
             mflightbox.inclineEvent += fb_inclineEvent;
-            
+
+            //initialize objects ahead of time to avoid delays when starting recognition.
+            //recoWithUI = new SpeechRecognizerUI();
+
+            //set path to SRGS compliant XML file
+            //Uri citiesGrammar = new Uri("ms-appx:///CitiesList.grxml", UriKind.Absolute);
+
+            //add SRGS grammar to grammar set
+            //recoWithUI.Recognizer.Grammars.AddGrammarFromUri("cities", citiesGrammar);
+
+            //let user know what to say
+            //recoWithUI.Settings.ListenText = "Fly to what city?";
+
+            //give example of expected input
+            //recoWithUI.Settings.ExampleText = "'Barcelona','Montreal','Santiago'";
+            mConManager.Initialize();
         }
         
 
@@ -82,13 +105,14 @@ namespace equilibrium
      
         private async void AppToDevice()
         {
-            //configure peerfinder to search for all paired devices
+
+            ConnectAppToDeviceButton.Content = "Connecting...";
             PeerFinder.AlternateIdentities["Bluetooth:Paired"] = "";
             var pairedDevices = await PeerFinder.FindAllPeersAsync();
 
             if (pairedDevices.Count == 0)
             {
-
+                MessageBox.Show("No paired devices were found.");
             }
             else
             {
@@ -101,7 +125,6 @@ namespace equilibrium
                         DeviceName.IsReadOnly = true;
                         ConnectAppToDeviceButton.IsEnabled = false;
                         continue;
-
                     }
                 }
             }
@@ -137,5 +160,17 @@ namespace equilibrium
         {
             AppToDevice();
         }
+
+        private async void Reco1_Click(object sender, RoutedEventArgs e)
+        {
+            //start recognition
+            //SpeechRecognitionUIResult recoResult = await recoWithUI.RecognizeWithUIAsync();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Reco1_Click(sender, e);
+        }
+
     }
 }

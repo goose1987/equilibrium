@@ -13,9 +13,7 @@ namespace BluetoothConnectionManager
 {
     public class btConManager
     {
-        public btConManager()
-        {
-        }
+        
 
         /// <summary>
         /// Socket used to communicate with Arduino.

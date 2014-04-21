@@ -56,7 +56,8 @@
             <TextBlock HorizontalAlignment="Left" Margin="45,439,0,0" TextWrapping="Wrap" Text="height" VerticalAlignment="Top"/>
             <TextBlock x:Name="heightTextBlock" HorizontalAlignment="Left" Margin="190,439,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <Button x:Name="ConnectAppToDeviceButton" Content="Button" HorizontalAlignment="Left" Margin="34,73,0,0" VerticalAlignment="Top" Click="ConnectAppToDeviceButton_Click"/>
-            <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="190,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="188"/>
+            <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="190,73,0,0" TextWrapping="Wrap" Text="linvor" VerticalAlignment="Top" Width="188"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="34,505,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
         </Grid>
 
