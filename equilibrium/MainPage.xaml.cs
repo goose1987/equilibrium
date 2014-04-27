@@ -31,6 +31,7 @@ using Windows.Devices.Geolocation;
 using BluetoothConnectionManager;
 using kuntakinte;
 using Windows.Phone.Speech.Recognition;
+using Windows.Phone.Speech.Synthesis;
 
 
 namespace equilibrium
@@ -100,8 +101,23 @@ namespace equilibrium
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
 
-        
+        private async void boutThatAction()
+        {
+            SpeechSynthesizer synth = new SpeechSynthesizer();
+            await synth.SpeakTextAsync("nah, I'm Just about that action baus");
 
+        }
+
+        private async void Listen()
+        {
+            this.recoWithUI = new SpeechRecognizerUI();
+            
+            SpeechRecognitionUIResult recoResult = await recoWithUI.RecognizeWithUIAsync();
+            if (recoResult.ResultStatus == SpeechRecognitionUIStatus.Succeeded)
+                MessageBox.Show(string.Format("You said {0}.",
+                                               recoResult.RecognitionResult.Text));
+
+        }
      
         private async void AppToDevice()
         {
@@ -170,6 +186,8 @@ namespace equilibrium
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Reco1_Click(sender, e);
+            //boutThatAction();
+            Listen();
         }
 
     }

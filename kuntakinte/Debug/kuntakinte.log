@@ -1,15 +1,21 @@
-﻿Build started 4/20/2014 4:48:52 PM.
+﻿Build started 4/27/2014 1:47:56 PM.
      1>Project "C:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\kuntakinte.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /IC:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\ /I"Generated Files\\" /IDebug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _WINRT_DLL /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"pch.h" /Fp"Debug\kuntakinte.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt pch.cpp
+         pch.cpp
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /IC:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\ /I"Generated Files\\" /IDebug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _WINRT_DLL /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"Debug\kuntakinte.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt kuntakinte.cpp
          kuntakinte.cpp
+     1>c:\users\phamh3\documents\github\equilibrium\kuntakinte\kuntakinte.cpp(144): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\phamh3\documents\github\equilibrium\kuntakinte\kuntakinte.cpp(145): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\phamh3\documents\github\equilibrium\kuntakinte\kuntakinte.cpp(146): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /DLL Debug\kuntakinte.obj
          Debug\pch.obj
+         LINK : C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.dll not found or not built by the last incremental link; performing full link
             Creating library C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.lib and object C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.exp
          kuntakinte.vcxproj -> C:\Users\phamh3\Documents\GitHub\equilibrium\Debug\kuntakinte\kuntakinte.dll
      1>Done Building Project "C:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\kuntakinte.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.29
+Time Elapsed 00:00:01.32
