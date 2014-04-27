@@ -31,7 +31,10 @@ flightbox::flightbox()
 	
 	inclinometer->ReadingChanged::add(ref new TypedEventHandler<Inclinometer ^, InclinometerReadingChangedEventArgs ^>(this, &flightbox::OnInclineReadingChanged));
 
-
+	//get gyroscope
+	gyrometer = Gyrometer::GetDefault();
+	gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
+	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));
 
 	/*
 
@@ -47,6 +50,11 @@ flightbox::flightbox()
 	this->mroll = 0;
 	this->mpitch = 0;
 	this->myaw = 0;
+
+	//init angular rotation
+	this->wx = 0;
+	this->wy = 0;
+	this->wz = 0;
 
 	//initialize duty cycle
 	this->duty[0] = 0.2;
@@ -131,7 +139,12 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	
 }
 
+void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs ^args){
 
+	wx = args->Reading->AngularVelocityX;
+	wy = args->Reading->AngularVelocityY;
+	wz = args->Reading->AngularVelocityZ;
+}
 
 
 void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args)

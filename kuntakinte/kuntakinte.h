@@ -10,22 +10,30 @@ namespace kuntakinte
 {
 	//callback definitions
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
+	public delegate void gyroCallback(const Platform::Array<float>^ data);
 
     public ref class flightbox sealed
     {
 	private:
 
 		Inclinometer^ inclinometer;
+		Gyrometer^ gyrometer;
 
 		//roll pitch and yaw measurement
 		double mroll;
 		double mpitch;
 		double myaw;
 
+		//angular velocity
+		float wx;
+		float wy;
+		float wz;
+
 		//position
 		double xpos;
 		double ypos;
 		double zpos;
+
 
 		//duty cycle output to motor
 		double duty[4];
@@ -60,6 +68,7 @@ namespace kuntakinte
 
 		//event interface
 		event inclineCallback^ inclineEvent;
+		event gyroCallback^ gyroEvent;
 
         flightbox();
 		int calibrate(double roll, double pitch, double yaw);
@@ -75,6 +84,7 @@ namespace kuntakinte
 		
 
 		void OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadingChangedEventArgs ^args);
+		void OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs^args);
 		void OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args);
 
 		
