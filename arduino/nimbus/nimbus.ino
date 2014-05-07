@@ -22,7 +22,7 @@ const int TX_BT = 10;
 const int RX_BT = 11;
 
 int i=0;
-int cmdOut = 0;
+float cmdOut = 0;
  
 int outPWM = 9;
 int duty = 0; //duty cycle
@@ -54,11 +54,11 @@ void arm(){
 void setup() {
   
   //initialize serial comm through USB
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("USB Connected");
   
   //initialize serial com through bluetooth
-  btSerial.begin(115200);
+  btSerial.begin(9600);
   
   //servo init
   //attach dedicate pin to servo
@@ -78,11 +78,12 @@ void loop() {
   //read bluetooth serial buffer
   if(btSerial.available()){
     cmd=btSerial.parseFloat();
-
+    //cmd = btSerial.read();
      
-    cmdOut = map(cmd, -90, 90, 1000, 1200);
-    Serial.println(cmdOut);  
-    servo4.writeMicroseconds(cmdOut); 
+    cmdOut = map(cmd, -90, 90, 900, 1100);
+    Serial.println(cmd);  
+    servo4.writeMicroseconds(cmdOut);  
+    servo3.writeMicroseconds(cmdOut);
   }
 
 }
