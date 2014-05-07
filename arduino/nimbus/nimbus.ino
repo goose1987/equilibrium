@@ -18,8 +18,8 @@ red = plus
 brown is ground
 ********************/
 
-const int TX_BT = 10;
-const int RX_BT = 11;
+const int TX_BT = 1;
+const int RX_BT = 0;
 
 int i=0;
 float cmdOut = 0;
@@ -37,17 +37,17 @@ SoftwareSerial btSerial(TX_BT,RX_BT);
 //function to arm servo during init
 void arm(){
   
-  servo1.writeMicroseconds(2500);
-  servo2.writeMicroseconds(2500);
-  servo3.writeMicroseconds(2500);
-  servo4.writeMicroseconds(2500);
-  delay(2000);
+  servo1.writeMicroseconds(4000);
+  servo2.writeMicroseconds(4000);
+  servo3.writeMicroseconds(4000);
+  servo4.writeMicroseconds(4000);
+  delay(4000);
   //servo1.writeMicroseconds(2500);
   servo1.writeMicroseconds(1000);
   servo2.writeMicroseconds(1000);
   servo3.writeMicroseconds(1000);
   servo4.writeMicroseconds(1000);
-  
+  Serial.println("Armed");
   
 }
 
@@ -76,6 +76,7 @@ void setup() {
 void loop() {
   
   //read bluetooth serial buffer
+  /*
   if(btSerial.available()){
     cmd=btSerial.parseFloat();
     //cmd = btSerial.read();
@@ -84,6 +85,15 @@ void loop() {
     Serial.println(cmd);  
     servo4.writeMicroseconds(cmdOut);  
     servo3.writeMicroseconds(cmdOut);
+  }*/
+  if (Serial.available()) {
+    cmd = Serial.parseFloat();
+    Serial.println(cmd);
+    Serial.println("in loop");
+    servo1.writeMicroseconds(cmd);  
+    servo2.writeMicroseconds(cmd);
+    servo3.writeMicroseconds(cmd);  
+    servo4.writeMicroseconds(cmd);
   }
 
 }
