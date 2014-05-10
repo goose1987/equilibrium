@@ -39,10 +39,10 @@ flightbox::flightbox()
 	
 
 	//get accelerometer
-	Accelerometer^ accelerometer = Accelerometer::GetDefault();
-	accelerometer->ReportInterval = accelerometer->MinimumReportInterval;
-	accelerometer->ReadingChanged+=ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged);
-	tick = accelerometer->MinimumReportInterval/1000.0;
+	accelerometer = Accelerometer::GetDefault();
+	accelerometer->ReportInterval = 100;
+	accelerometer->ReadingChanged::add(ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged));
+	tick = 10/1000.0;
 
 	
 
@@ -163,14 +163,18 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 
 void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args)
 {
-	
+
+	float foo = args->Reading->AccelerationX;
+	if (foo < 0.01&&foo>-0.01)
+		foo = 0;
+
 	vx1 = vx0;
-	vx0 += (ax + args->Reading->AccelerationX) / 2 * (tick);
+	vx0 += (ax + foo) / 2 * (tick);
 	
-	ax = args->Reading->AccelerationX;
+	ax = foo;
 
-	position[0] += (vx1 + vx0) / 2 * (tick);
-
+	position[0] =vx0;
+	//position[0] = args->Reading->AccelerationZ;
 	accelEvent(position);
 	//throw ref new Platform::NotImplementedException();
 }

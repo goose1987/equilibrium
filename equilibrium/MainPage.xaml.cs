@@ -91,7 +91,7 @@ namespace equilibrium
             //updateMotorDrive(data);
             Dispatcher.BeginInvoke(() =>
             {
-                heightTextBlock.Text = "foo";
+                heightTextBlock.Text = __param0[0].ToString("f3") ;
             });
         }
         

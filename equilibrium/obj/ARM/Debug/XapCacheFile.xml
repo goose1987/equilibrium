@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\equilibrium_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="5/10/2014 1:30:17 PM">
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.dll" archivePath="equilibrium.dll" lastWriteTime="5/10/2014 1:30:16 PM" />
+﻿<xapCache source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\equilibrium_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="5/10/2014 1:55:01 PM">
+  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.dll" archivePath="equilibrium.dll" lastWriteTime="5/10/2014 1:55:00 PM" />
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="5/2/2014 10:24:58 PM" />
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="5/2/2014 10:24:58 PM" />
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="5/2/2014 10:24:58 PM" />
@@ -8,7 +8,7 @@
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="5/10/2014 1:22:51 PM" />
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="5/2/2014 10:24:58 PM" />
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="5/2/2014 10:24:58 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.winmd" archivePath="kuntakinte.winmd" lastWriteTime="5/10/2014 1:29:00 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll" archivePath="kuntakinte.dll" lastWriteTime="5/10/2014 1:29:00 PM" />
+  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.winmd" archivePath="kuntakinte.winmd" lastWriteTime="5/10/2014 1:55:00 PM" />
+  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll" archivePath="kuntakinte.dll" lastWriteTime="5/10/2014 1:55:00 PM" />
   <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="5/10/2014 1:22:52 PM" />
 </xapCache>

@@ -19,6 +19,7 @@ namespace kuntakinte
 
 		Inclinometer^ inclinometer;
 		Gyrometer^ gyrometer;
+		Accelerometer^ accelerometer;
 
 		//roll pitch and yaw measurement
 		float mroll;
