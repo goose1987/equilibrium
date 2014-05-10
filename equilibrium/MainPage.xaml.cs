@@ -65,7 +65,9 @@ namespace equilibrium
             mflightbox = new flightbox(); // initialize a new flightbox
 
 
-            mflightbox.inclineEvent += fb_inclineEvent;
+            //mflightbox.inclineEvent += fb_inclineEvent;
+            mflightbox.accelEvent += mflightbox_accelEvent;
+            
 
             //initialize objects ahead of time to avoid delays when starting recognition.
             //recoWithUI = new SpeechRecognizerUI();
@@ -82,6 +84,15 @@ namespace equilibrium
             //give example of expected input
             //recoWithUI.Settings.ExampleText = "'Barcelona','Montreal','Santiago'";
             mConManager.Initialize();
+        }
+
+        void mflightbox_accelEvent(float[] __param0)
+        {
+            //updateMotorDrive(data);
+            Dispatcher.BeginInvoke(() =>
+            {
+                heightTextBlock.Text = "foo";
+            });
         }
         
 
@@ -146,6 +157,17 @@ namespace equilibrium
             }
         }
 
+
+        void fb_accelEvent(float[] data)
+        {
+            //updateMotorDrive(data);
+            Dispatcher.BeginInvoke(() =>
+            {
+                heightTextBlock.Text ="foo";
+            });
+
+        }
+
         void fb_inclineEvent(float[] data)
         {
 
@@ -154,22 +176,23 @@ namespace equilibrium
                 roll = data[0];
                 pitch = data[1];
                 yaw = data[2];
-                rollTextBlock.Text = roll.ToString();
-                pitchTextBlock.Text = pitch.ToString();
-                yawTextBlock.Text=yaw.ToString();
+                rollTextBlock.Text = roll.ToString("f2");
+                pitchTextBlock.Text = pitch.ToString("f2");
+                yawTextBlock.Text = yaw.ToString("f2");
 
                 
 
             });
 
-            updateMotorDrive(roll);
+            //updateMotorDrive(roll);
+            //updateMotorDrive(yaw);
             
         }
 
 
         private async void updateMotorDrive(float cmd)
         {
-            await mConManager.SendCommand(cmd.ToString());
+            await mConManager.SendCommand(cmd.ToString("f2"));
         }
 
         private void ConnectAppToDeviceButton_Click(object sender, RoutedEventArgs e)
@@ -186,8 +209,8 @@ namespace equilibrium
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Reco1_Click(sender, e);
-            //boutThatAction();
-            Listen();
+            boutThatAction();
+            //Listen();
         }
 
     }

@@ -11,6 +11,7 @@ namespace kuntakinte
 	//callback definitions
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
+	public delegate void accelCallback(const Platform::Array<float>^ data);
 
     public ref class flightbox sealed
     {
@@ -20,38 +21,55 @@ namespace kuntakinte
 		Gyrometer^ gyrometer;
 
 		//roll pitch and yaw measurement
-		double mroll;
-		double mpitch;
-		double myaw;
+		float mroll;
+		float mpitch;
+		float myaw;
 
 		//angular velocity
 		float wx;
 		float wy;
 		float wz;
 
+		//time
+		float tick;
+
+		//acceleration
+		float ax;
+		float ay;
+		float az;
+
+		//velocity
+		float vx0;
+		float vy0;
+		float vz0;
+
+		float vx1;
+		float vy1;
+		float vz1;
+
 		//position
-		double xpos;
-		double ypos;
-		double zpos;
+		float xpos;
+		float ypos;
+		float zpos; 
 
 
 		//duty cycle output to motor
-		double duty[4];
+		float duty[4];
 
 		//PID gain of roll;
-		double kpr; //proportional gain
-		double kir; //integral gain
-		double kdr; //derivative gain
+		float kpr; //proportional gain
+		float kir; //integral gain
+		float kdr; //derivative gain
 
 		//PID gain of pitch;
-		double kpp;//p gain
-		double kip;//i gain
-		double kdp;//d gain
+		float kpp;//p gain
+		float kip;//i gain
+		float kdp;//d gain
 
 		//PID gain of yaw;
-		double kpy;//p gain
-		double kiy;//i gain
-		double kdy;//d gain
+		float kpy;//p gain
+		float kiy;//i gain
+		float kdy;//d gain
 
 		
 		
@@ -65,21 +83,23 @@ namespace kuntakinte
 
 		//roll pitch yaw float array
 		property Platform::Array<float>^ rpy;
+		property Platform::Array<float>^ position;
 
 		//event interface
 		event inclineCallback^ inclineEvent;
 		event gyroCallback^ gyroEvent;
+		event accelCallback^ accelEvent;
 
         flightbox();
-		int calibrate(double roll, double pitch, double yaw);
+		int calibrate(float roll, float pitch, float yaw);
 
 		//int balance(double roll, double pitch, double yaw);
 
-		int rollPID(double roll);
+		int rollPID(float roll);
 
-		int pitchPID(double pitch);
+		int pitchPID(float pitch);
 
-		int yawPID(double yaw);
+		int yawPID(float yaw);
 
 		
 

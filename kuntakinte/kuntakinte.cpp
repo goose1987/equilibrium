@@ -36,15 +36,15 @@ flightbox::flightbox()
 	gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
 	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));
 
-	/*
+	
 
 	//get accelerometer
 	Accelerometer^ accelerometer = Accelerometer::GetDefault();
 	accelerometer->ReportInterval = accelerometer->MinimumReportInterval;
-	//accelerometer->ReadingChanged+=ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged);
+	accelerometer->ReadingChanged+=ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged);
+	tick = accelerometer->MinimumReportInterval/1000.0;
 
-
-	*/
+	
 
 	//initialize cal value to 0
 	this->mroll = 0;
@@ -78,16 +78,30 @@ flightbox::flightbox()
 	this->kdy = 1;
 
 
+	vx0=0;
+	vy0=0;
+	vz0=0;
+
+	vx1=0;
+	vy1=0;
+	vz1=0;
+
+
 	//initialize rpy array
 	rpy = ref new Platform::Array<float>(3);
 	rpy[0] = 0;
 	rpy[1] = 0;
 	rpy[2] = 0;
 
+	position = ref new Platform::Array<float>(3);
+	position[0] = 0;
+	position[1] = 0;
+	position[2] = 0;
+
 	
 }
 
-int flightbox::calibrate(double roll, double pitch, double yaw){
+int flightbox::calibrate(float roll, float pitch, float yaw){
 
 	//set calibration value if there is offset
 	this->mroll = roll;
@@ -99,15 +113,15 @@ int flightbox::calibrate(double roll, double pitch, double yaw){
 	
 }
 
-int flightbox::rollPID(double roll){
+int flightbox::rollPID(float roll){
 	return 0;
 }
 
-int flightbox::pitchPID(double roll){
+int flightbox::pitchPID(float roll){
 	return 0;
 }
 
-int flightbox::yawPID(double yaw){
+int flightbox::yawPID(float yaw){
 	return 0;
 }
 
@@ -149,5 +163,14 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 
 void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args)
 {
+	
+	vx1 = vx0;
+	vx0 += (ax + args->Reading->AccelerationX) / 2 * (tick);
+	
+	ax = args->Reading->AccelerationX;
+
+	position[0] += (vx1 + vx0) / 2 * (tick);
+
+	accelEvent(position);
 	//throw ref new Platform::NotImplementedException();
 }
