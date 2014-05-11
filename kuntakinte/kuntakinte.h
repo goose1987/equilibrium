@@ -12,6 +12,7 @@ namespace kuntakinte
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
 	public delegate void accelCallback(const Platform::Array<float>^ data);
+	public delegate void motorCallback(const Platform::Array<float>^ data);
 
     public ref class flightbox sealed
     {
@@ -58,38 +59,37 @@ namespace kuntakinte
 		float duty[4];
 
 		//PID gain of roll;
-		float kpr; //proportional gain
-		float kir; //integral gain
-		float kdr; //derivative gain
+		float rollGain[3];
+		
 
 		//PID gain of pitch;
-		float kpp;//p gain
-		float kip;//i gain
-		float kdp;//d gain
+		float pitchGain[3];
 
 		//PID gain of yaw;
-		float kpy;//p gain
-		float kiy;//i gain
-		float kdy;//d gain
+		float yawGain[3];
 
-		
-		
+		//integral rpy
+		float rpyint[3];
 
 		//Threads 
 		IAsyncAction ^ threadHandle;
 		
-		
+	
 
     public:
 
 		//roll pitch yaw float array
 		property Platform::Array<float>^ rpy;
+		//position array
 		property Platform::Array<float>^ position;
+		//motor array
+		property Platform::Array<float>^ motors;
 
 		//event interface
 		event inclineCallback^ inclineEvent;
 		event gyroCallback^ gyroEvent;
 		event accelCallback^ accelEvent;
+		event motorCallback^ motorEvent;
 
         flightbox();
 		int calibrate(float roll, float pitch, float yaw);

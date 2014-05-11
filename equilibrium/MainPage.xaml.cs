@@ -65,9 +65,9 @@ namespace equilibrium
             mflightbox = new flightbox(); // initialize a new flightbox
 
 
-            //mflightbox.inclineEvent += fb_inclineEvent;
-            mflightbox.accelEvent += mflightbox_accelEvent;
-            
+            mflightbox.inclineEvent += fb_inclineEvent;
+
+            mflightbox.motorEvent += mflightbox_motorEvent;
 
             //initialize objects ahead of time to avoid delays when starting recognition.
             //recoWithUI = new SpeechRecognizerUI();
@@ -86,32 +86,28 @@ namespace equilibrium
             mConManager.Initialize();
         }
 
+        void mflightbox_motorEvent(float[] data)
+        {
+            //throw new NotImplementedException();
+            //updateMotorDrive(data);
+            Dispatcher.BeginInvoke(() =>
+            {
+                motor0.Text = data[0].ToString("f3");
+                motor1.Text = data[1].ToString("f3");
+                motor2.Text = data[2].ToString("f3");
+                motor3.Text = data[3].ToString("f3");
+            });
+        }
+
         void mflightbox_accelEvent(float[] __param0)
         {
             //updateMotorDrive(data);
             Dispatcher.BeginInvoke(() =>
             {
-                heightTextBlock.Text = __param0[0].ToString("f3") ;
+               
             });
         }
         
-
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
-
         private async void boutThatAction()
         {
             SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -163,7 +159,7 @@ namespace equilibrium
             //updateMotorDrive(data);
             Dispatcher.BeginInvoke(() =>
             {
-                heightTextBlock.Text ="foo";
+                
             });
 
         }

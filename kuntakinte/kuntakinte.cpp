@@ -17,86 +17,53 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Media;
 
 
+#define ROLL	0
+#define PITCH	1
+#define YAW		2
+
+
 
 
 flightbox::flightbox()
 {
 
 	//get inclinometer
-
-	inclinometer = Inclinometer::GetDefault();
-	
-	inclinometer->ReportInterval = inclinometer->MinimumReportInterval;
-	
-	
+	inclinometer = Inclinometer::GetDefault();	
+	inclinometer->ReportInterval = inclinometer->MinimumReportInterval;	
 	inclinometer->ReadingChanged::add(ref new TypedEventHandler<Inclinometer ^, InclinometerReadingChangedEventArgs ^>(this, &flightbox::OnInclineReadingChanged));
 
 	//get gyroscope
 	gyrometer = Gyrometer::GetDefault();
 	gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
-	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));
-
-	
+	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));	
 
 	//get accelerometer
 	accelerometer = Accelerometer::GetDefault();
 	accelerometer->ReportInterval = 100;
 	accelerometer->ReadingChanged::add(ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged));
-	tick = 10/1000.0;
-
 	
-
-	//initialize cal value to 0
-	this->mroll = 0;
-	this->mpitch = 0;
-	this->myaw = 0;
-
-	//init angular rotation
-	this->wx = 0;
-	this->wy = 0;
-	this->wz = 0;
-
-	//initialize duty cycle
-	this->duty[0] = 0.2;
-	this->duty[1] = 0.2;
-	this->duty[2] = 0.2;
-	this->duty[3] = 0.2;
+	tick = inclinometer->ReportInterval/1000.0;
 
 	//set PID gain of roll loop
-	this->kpr = 1;
-	this->kir = 1;
-	this->kdr = 1;
-
+	rollGain[0] = 1;
+	rollGain[1] = 1;
+	rollGain[2] = 1;
 	//set PID gain of pitch loop
-	this->kpp = 1;
-	this->kip = 1;
-	this->kdp = 1;
+	pitchGain[0] = 1;
+	pitchGain[1] = 1;
+	pitchGain[2] = 1;
 
 	//set PID gain of yaw loop
-	this->kpy = 1;
-	this->kiy = 1;
-	this->kdy = 1;
-
-
-	vx0=0;
-	vy0=0;
-	vz0=0;
-
-	vx1=0;
-	vy1=0;
-	vz1=0;
-
-
+	yawGain[0] = 1;
+	yawGain[1] = 1;
+	yawGain[2] = 1;
+	
 	//initialize rpy array
 	rpy = ref new Platform::Array<float>(3);
-	rpy[0] = 0;
-	rpy[1] = 0;
-	rpy[2] = 0;
-
+	//init position array
 	position = ref new Platform::Array<float>(3);
-	position[0] = 0;
-	position[1] = 0;
-	position[2] = 0;
+	//init motors array
+	motors = ref new Platform::Array<float>(4);
 
 	
 }
@@ -125,39 +92,49 @@ int flightbox::yawPID(float yaw){
 	return 0;
 }
 
-/*
-int flightbox::balance(double roll, double pitch, double yaw){
-	duty[0] = 0;
-	duty[1] = 0;
-	duty[2] = 0;
-	duty[3] = 0;
-	return 0;
-}
-
-*/
-
-
-
 
 void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadingChangedEventArgs ^args)
 {
+
+	//roll and pitch goes from -180 to 180
+	//integrate roll; running sum
+	rpyint[ROLL] += (rpy[ROLL] + args->Reading->RollDegrees) / 2 * tick;
+	//integrate pitch
+	rpyint[PITCH] += (rpy[PITCH] + args->Reading->PitchDegrees) / 2 * tick;
+	//integrate yaw
+	//yaw goes from 0 to 360 NEED TO ACCOUNT FOR THIS //////////////////////
 	
+
 	rpy[0] = args->Reading->RollDegrees;
 	rpy[1] = args->Reading->PitchDegrees;
 	rpy[2] = args->Reading->YawDegrees;
 
-	
+	//calculate PI for roll
+	motors[0] = rollGain[0] * rpy[ROLL] + rollGain[1] * rpyint[ROLL];
+	motors[2] = -motors[0];
+
+	//calculate PI for pitch
+	motors[1] = pitchGain[0] * rpy[PITCH] + pitchGain[1] * rpyint[PITCH];
+	motors[3] = -motors[1];
+
+	//calculate PI for yaw
+
+
 	//throw ref new Platform::NotImplementedException();
 	inclineEvent(rpy);
+	motorEvent(motors);
 	
 	
 }
 
 void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs ^args){
-
+	/*
 	wx = args->Reading->AngularVelocityX;
 	wy = args->Reading->AngularVelocityY;
 	wz = args->Reading->AngularVelocityZ;
+	
+	*/
+	
 }
 
 
@@ -175,6 +152,6 @@ void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadin
 
 	position[0] =vx0;
 	//position[0] = args->Reading->AccelerationZ;
-	accelEvent(position);
+	//accelEvent(position);
 	//throw ref new Platform::NotImplementedException();
 }
