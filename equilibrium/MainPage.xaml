@@ -56,7 +56,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="249,80,0,0" TextWrapping="Wrap" Text="motor 0" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor0" HorizontalAlignment="Left" Margin="341,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <Button x:Name="ConnectAppToDeviceButton" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="ConnectAppToDeviceButton_Click"/>
-            <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="144,0,0,0" TextWrapping="Wrap" Text="linvor" VerticalAlignment="Top" Width="188"/>
+            <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="144,0,0,0" TextWrapping="Wrap" Text="linvor" VerticalAlignment="Top" Width="279"/>
             <Button Content="Button" HorizontalAlignment="Left" Margin="0,525,0,0" VerticalAlignment="Top" Click="Button_Click"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,112,0,0" TextWrapping="Wrap" Text="motor 1" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,144,0,0" TextWrapping="Wrap" Text="motor 2" VerticalAlignment="Top"/>

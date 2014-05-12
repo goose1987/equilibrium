@@ -197,9 +197,9 @@ namespace equilibrium
         }
 
 
-        private async void updateMotorDrive(float cmd)
+        private async void updateMotorDrive(int cmd)
         {
-            await mConManager.SendCommand(cmd.ToString());
+            await mConManager.SendCommand(cmd.ToString()+'a');
         }
 
         private void ConnectAppToDeviceButton_Click(object sender, RoutedEventArgs e)

@@ -134,8 +134,8 @@ namespace BluetoothConnectionManager
             uint sentCommandSize = 0;
             if (dataWriter != null)
             {
-                uint commandSize = dataWriter.MeasureString(command);
-                dataWriter.WriteByte((byte)commandSize);
+                //uint commandSize = dataWriter.MeasureString(command);
+                //dataWriter.WriteByte((byte)commandSize);
                 sentCommandSize = dataWriter.WriteString(command);
                 await dataWriter.StoreAsync();
             }
