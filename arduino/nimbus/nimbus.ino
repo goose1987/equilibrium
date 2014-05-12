@@ -1,15 +1,15 @@
 #include <Servo.h>
 #include <SoftwareSerial.h>
 
-#define M1  9
-#define M2  6
-#define M3  5
-#define M4  3
+#define M9  9
+#define M6  6
+#define M5  5
+#define M3  3
 
-Servo servo1;
-Servo servo2;
+Servo servo9;
+Servo servo6;
+Servo servo5;
 Servo servo3;
-Servo servo4;
 
 /********************
 brushless esc wire 
@@ -29,7 +29,7 @@ int duty = 0; //duty cycle
 int serialRead = 0;  
 int throttle = 0;
 
-float cmd=0; 
+int cmd=0; 
 String echo="";
 
 SoftwareSerial btSerial(TX_BT,RX_BT);
@@ -37,16 +37,16 @@ SoftwareSerial btSerial(TX_BT,RX_BT);
 //function to arm servo during init
 void arm(){
   
-  servo1.writeMicroseconds(4000);
-  servo2.writeMicroseconds(4000);
+  servo9.writeMicroseconds(4000);
+  servo6.writeMicroseconds(4000);
+  servo5.writeMicroseconds(4000);
   servo3.writeMicroseconds(4000);
-  servo4.writeMicroseconds(4000);
   delay(4000);
   //servo1.writeMicroseconds(2500);
-  servo1.writeMicroseconds(1000);
-  servo2.writeMicroseconds(1000);
+  servo9.writeMicroseconds(1000);
+  servo6.writeMicroseconds(1000);
+  servo5.writeMicroseconds(1000);
   servo3.writeMicroseconds(1000);
-  servo4.writeMicroseconds(1000);
   Serial.println("Armed");
   
 }
@@ -62,10 +62,10 @@ void setup() {
   
   //servo init
   //attach dedicate pin to servo
-  servo1.attach(M1);
-  servo2.attach(M2);
+  servo9.attach(M9);
+  servo6.attach(M6);
+  servo5.attach(M5);
   servo3.attach(M3);
-  servo4.attach(M4);
   ///////////////////////////////
   arm();//arm servos
   
@@ -76,7 +76,7 @@ void setup() {
 void loop() {
   
   //read bluetooth serial buffer
-  
+  /*
   if(btSerial.available()){
     cmd=btSerial.parseFloat();
     //cmd = btSerial.read();
@@ -85,19 +85,20 @@ void loop() {
     Serial.println(cmd);  
     servo4.writeMicroseconds(cmdOut);  
     servo3.writeMicroseconds(cmdOut);
-  }
-  
-  /*
-  if (Serial.available()) {
-    cmd = Serial.parseFloat();
+  }*/
+  if (btSerial.available()) {
+    
+    
+    cmd = btSerial.parseInt();
+    
+   // if (cmd > 110) {
+     // cmd = 110;
+   // }
     Serial.println(cmd);
-    Serial.println("in loop");
-    servo1.writeMicroseconds(cmd);  
-    servo2.writeMicroseconds(cmd);
-    servo3.writeMicroseconds(cmd);  
-    servo4.writeMicroseconds(cmd);
+    //servo9.writeMicroseconds(1090+cmd);  
+    //servo6.writeMicroseconds(cmd);
+    //servo5.writeMicroseconds(cmd);  
+    //servo3.writeMicroseconds(1090-cmd);
   }
-  */
 
 }
-
