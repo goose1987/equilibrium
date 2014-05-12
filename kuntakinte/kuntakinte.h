@@ -12,7 +12,7 @@ namespace kuntakinte
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
 	public delegate void accelCallback(const Platform::Array<float>^ data);
-	public delegate void motorCallback(const Platform::Array<float>^ data);
+	public delegate void motorCallback(const Platform::Array<int>^ data);
 
     public ref class flightbox sealed
     {
@@ -83,7 +83,7 @@ namespace kuntakinte
 		//position array
 		property Platform::Array<float>^ position;
 		//motor array
-		property Platform::Array<float>^ motors;
+		property Platform::Array<int>^ motors;
 
 		//event interface
 		event inclineCallback^ inclineEvent;

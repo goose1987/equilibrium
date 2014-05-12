@@ -42,6 +42,18 @@
         <Path>kuntakinte.dll</Path>
         <ActivatableClass ActivatableClassId="kuntakinte.flightbox" ThreadingModel="both" />
       </InProcessServer>
+      <InProcessServer>
+        <Path>libvideo.dll</Path>
+        <ActivatableClass ActivatableClassId="libvideo.Camera" ThreadingModel="both" />
+      </InProcessServer>
+      <InProcessServer>
+        <Path>redbox.dll</Path>
+        <ActivatableClass ActivatableClassId="redbox.Redbox" ThreadingModel="both" />
+      </InProcessServer>
+      <InProcessServer>
+        <Path>TextureGraph.dll</Path>
+        <ActivatableClass ActivatableClassId="TextureGraph.TextureGraphInterop" ThreadingModel="both" />
+      </InProcessServer>
     </ActivatableClasses>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />

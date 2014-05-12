@@ -29,9 +29,18 @@ using Windows.System.Threading;
 using Windows.Devices.Geolocation;
 
 using BluetoothConnectionManager;
+
 using kuntakinte;
+using TextureGraph;
+using redbox;
+using libvideo;
+using Windows.Phone.Media.Capture;
+using System.Windows.Resources;
+using System.Windows.Media.Imaging;
+
 using Windows.Phone.Speech.Recognition;
 using Windows.Phone.Speech.Synthesis;
+
 
 
 namespace equilibrium
@@ -86,17 +95,19 @@ namespace equilibrium
             mConManager.Initialize();
         }
 
-        void mflightbox_motorEvent(float[] data)
+        void mflightbox_motorEvent(int[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
             Dispatcher.BeginInvoke(() =>
             {
-                motor0.Text = data[0].ToString("f3");
-                motor1.Text = data[1].ToString("f3");
-                motor2.Text = data[2].ToString("f3");
-                motor3.Text = data[3].ToString("f3");
+                motor0.Text = data[0].ToString();
+                motor1.Text = data[1].ToString();
+                motor2.Text = data[2].ToString();
+                motor3.Text = data[3].ToString();
             });
+
+            updateMotorDrive(data[0]);
         }
 
         void mflightbox_accelEvent(float[] __param0)
@@ -188,7 +199,7 @@ namespace equilibrium
 
         private async void updateMotorDrive(float cmd)
         {
-            await mConManager.SendCommand(cmd.ToString("f2"));
+            await mConManager.SendCommand(cmd.ToString());
         }
 
         private void ConnectAppToDeviceButton_Click(object sender, RoutedEventArgs e)

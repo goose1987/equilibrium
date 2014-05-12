@@ -76,7 +76,7 @@ void setup() {
 void loop() {
   
   //read bluetooth serial buffer
-  /*
+  
   if(btSerial.available()){
     cmd=btSerial.parseFloat();
     //cmd = btSerial.read();
@@ -85,7 +85,9 @@ void loop() {
     Serial.println(cmd);  
     servo4.writeMicroseconds(cmdOut);  
     servo3.writeMicroseconds(cmdOut);
-  }*/
+  }
+  
+  /*
   if (Serial.available()) {
     cmd = Serial.parseFloat();
     Serial.println(cmd);
@@ -95,6 +97,7 @@ void loop() {
     servo3.writeMicroseconds(cmd);  
     servo4.writeMicroseconds(cmd);
   }
+  */
 
 }
 

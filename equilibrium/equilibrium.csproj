@@ -153,6 +153,18 @@
       <Project>{F60304A6-1412-466E-B954-B667812AAF4E}</Project>
       <Name>kuntakinte</Name>
     </ProjectReference>
+    <ProjectReference Include="..\libvideo\libvideo.vcxproj">
+      <Project>{00982CCD-9513-4287-809F-11FB394E44DB}</Project>
+      <Name>libvideo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\redbox\redbox.vcxproj">
+      <Project>{C953E3EB-12F6-4697-B3E3-EB495F606AD9}</Project>
+      <Name>redbox</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextureGraph\TextureGraph.vcxproj">
+      <Project>{C0F94AFA-466F-4FC4-B5C1-6CD955F3FF88}</Project>
+      <Name>TextureGraph</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
