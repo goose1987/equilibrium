@@ -107,7 +107,7 @@ namespace equilibrium
                 motor3.Text = data[3].ToString();
             });
 
-            updateMotorDrive(data[0]);
+            updateMotorDrive(data[0]+1000);
         }
 
         void mflightbox_accelEvent(float[] __param0)
@@ -199,7 +199,7 @@ namespace equilibrium
 
         private async void updateMotorDrive(int cmd)
         {
-            await mConManager.SendCommand((ushort)cmd);
+            await mConManager.SendCommand((short)cmd);
         }
 
         private void ConnectAppToDeviceButton_Click(object sender, RoutedEventArgs e)
