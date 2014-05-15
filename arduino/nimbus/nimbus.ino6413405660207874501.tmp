@@ -1,0 +1,105 @@
+#include <Servo.h>
+#include <SoftwareSerial.h>
+
+#define M9  9
+#define M6  6
+#define M5  5
+#define M3  3
+
+Servo servo9;
+Servo servo6;
+Servo servo5;
+Servo servo3;
+
+/********************
+brushless esc wire 
+orange = signal
+red = plus
+brown is ground
+********************/
+
+const int TX_BT = 10;
+const int RX_BT = 11;
+
+int i=0;
+float cmdOut = 0;
+ 
+int outPWM = 9;
+int duty = 0; //duty cycle
+int serialRead = 0;  
+int throttle = 0;
+
+int cmd=0; 
+String echo="";
+
+SoftwareSerial btSerial(TX_BT,RX_BT);
+
+//function to arm servo during init
+void arm(){
+  
+  servo9.writeMicroseconds(4000);
+  servo6.writeMicroseconds(4000);
+  servo5.writeMicroseconds(4000);
+  servo3.writeMicroseconds(4000);
+  delay(4000);
+  //servo1.writeMicroseconds(2500);
+  servo9.writeMicroseconds(1000);
+  servo6.writeMicroseconds(1000);
+  servo5.writeMicroseconds(1000);
+  servo3.writeMicroseconds(1000);
+  Serial.println("Armed");
+  
+}
+
+void setup() {
+  
+  //initialize serial comm through USB
+  Serial.begin(9600);
+  Serial.println("USB Connected");
+  
+  //initialize serial com through bluetooth
+  btSerial.begin(9600);
+  
+  //servo init
+  //attach dedicate pin to servo
+  servo9.attach(M9);
+  servo6.attach(M6);
+  servo5.attach(M5);
+  servo3.attach(M3);
+  ///////////////////////////////
+  arm();//arm servos
+  
+  
+}
+
+
+void loop() {
+  
+  //read bluetooth serial buffer
+  /*
+  if(btSerial.available()){
+    cmd=btSerial.parseFloat();
+    //cmd = btSerial.read();
+     
+    cmdOut = map(cmd, -90, 90, 900, 1100);
+    Serial.println(cmd);  
+    servo4.writeMicroseconds(cmdOut);  
+    servo3.writeMicroseconds(cmdOut);
+  }*/
+  if (btSerial.available()>=2) {
+    
+    cmd=0;
+    cmd = btSerial.read();
+    cmd = (cmd<<8)|btSerial.read();
+    
+   // if (cmd > 110) {
+     // cmd = 110;
+   // }
+    Serial.println(cmd);
+    //servo9.writeMicroseconds(1090+cmd);  
+    //servo6.writeMicroseconds(cmd);
+    //servo5.writeMicroseconds(cmd);  
+    //servo3.writeMicroseconds(1090-cmd);
+  }
+
+}

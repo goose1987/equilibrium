@@ -107,7 +107,8 @@ namespace equilibrium
                 motor3.Text = data[3].ToString();
             });
 
-            updateMotorDrive(data[0]+1000);
+            updateMotorDrive(data[0]);
+            updateMotorDrive(data[2]);
         }
 
         void mflightbox_accelEvent(float[] __param0)

@@ -18,16 +18,16 @@ red = plus
 brown is ground
 ********************/
 
-const int TX_BT = 1;
-const int RX_BT = 0;
+const int TX_BT = 10;
+const int RX_BT = 11;
 
 int i=0;
 float cmdOut = 0;
  
-int outPWM = 9;
-int duty = 0; //duty cycle
-int serialRead = 0;  
-int throttle = 0;
+int m9pwm=0;
+int m6pwm=0;
+int m5pwm=0;
+int m3pwm=0;
 
 int cmd=0; 
 String echo="";
@@ -37,10 +37,10 @@ SoftwareSerial btSerial(TX_BT,RX_BT);
 //function to arm servo during init
 void arm(){
   
-  servo9.writeMicroseconds(4000);
-  servo6.writeMicroseconds(4000);
-  servo5.writeMicroseconds(4000);
-  servo3.writeMicroseconds(4000);
+  servo9.writeMicroseconds(3000);
+  servo6.writeMicroseconds(3000);
+  servo5.writeMicroseconds(3000);
+  servo3.writeMicroseconds(3000);
   delay(4000);
   //servo1.writeMicroseconds(2500);
   servo9.writeMicroseconds(1000);
@@ -77,28 +77,50 @@ void loop() {
   
   //read bluetooth serial buffer
   /*
-  if(btSerial.available()){
-    cmd=btSerial.parseFloat();
+  if(Serial.available()){
+    cmd=Serial.parseInt();
     //cmd = btSerial.read();
      
-    cmdOut = map(cmd, -90, 90, 900, 1100);
+  
     Serial.println(cmd);  
-    servo4.writeMicroseconds(cmdOut);  
-    servo3.writeMicroseconds(cmdOut);
-  }*/
-  if (btSerial.available()) {
+    servo5.writeMicroseconds(cmd);  
+    servo6.writeMicroseconds(cmd);
+  
+  }
+  */
+  
+  if (btSerial.available()>=4) {
     
+    m5pwm=0;
+    m5pwm=btSerial.read();
+    m5pwm=(m5pwm<<8)|btSerial.read();
+    m6pwm=0;
+    m6pwm = btSerial.read();
+    m6pwm = (m6pwm<<8)|btSerial.read();
     
-    cmd = btSerial.parseInt();
+    if(m5pwm>1150){
+       m5pwm=1150; 
+    }
+    
+    if(m6pwm>1150){
+       m6pwm=1150; 
+    }
+    //servo9.writeMicroseconds(1000);
+    //servo3.writeMicroseconds(1000);
+    servo5.writeMicroseconds(1090);
+    servo6.writeMicroseconds(109);
+    Serial.println(m5pwm);
+    Serial.println(m6pwm);
+    
     
    // if (cmd > 110) {
      // cmd = 110;
    // }
-    Serial.println(cmd);
     //servo9.writeMicroseconds(1090+cmd);  
     //servo6.writeMicroseconds(cmd);
     //servo5.writeMicroseconds(cmd);  
     //servo3.writeMicroseconds(1090-cmd);
   }
+  
 
 }
