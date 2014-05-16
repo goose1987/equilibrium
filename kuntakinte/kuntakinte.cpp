@@ -45,11 +45,11 @@ flightbox::flightbox()
 	tick = inclinometer->ReportInterval/1000.0;
 
 	//set PID gain of roll loop
-	rollGain[0] = 0.1;
+	rollGain[0] = 0.5;
 	rollGain[1] = 0.01;
 	rollGain[2] = 1;
 	//set PID gain of pitch loop
-	pitchGain[0] = 0.1;
+	pitchGain[0] = 0.5;
 	pitchGain[1] = 0.01;
 	pitchGain[2] = 1;
 

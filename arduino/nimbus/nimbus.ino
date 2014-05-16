@@ -76,19 +76,32 @@ void setup() {
 void loop() {
   
   //read bluetooth serial buffer
-  /*
-  if(Serial.available()){
-    cmd=Serial.parseInt();
+  
+  if(Serial.available()>=8){
+    m9pwm=0;
+    m9pwm=Serial.read();
+    m9pwm=(m9pwm<<8)|Serial.read();
+    m5pwm=0;
+    m5pwm=Serial.read();
+    m5pwm=(m5pwm<<8)|Serial.read();
+    m3pwm=0;
+    m3pwm=Serial.read();
+    m3pwm=(m3pwm<<8)|Serial.read();
+    m6pwm=0;
+    m6pwm = Serial.read();
+    m6pwm = (m6pwm<<8)|Serial.read();
     //cmd = btSerial.read();
      
   
-    Serial.println(cmd);  
-    servo5.writeMicroseconds(cmd);  
-    servo6.writeMicroseconds(cmd);
+    //Serial.println(cmd);
+    servo9.writeMicroseconds(m9pwm);
+    servo5.writeMicroseconds(m5pwm);
+    servo3.writeMicroseconds(m3pwm);  
+    servo6.writeMicroseconds(m6pwm);
   
   }
-  */
   
+  /*
   if (btSerial.available()>=4) {
     
     m5pwm=0;
@@ -121,6 +134,6 @@ void loop() {
     //servo5.writeMicroseconds(cmd);  
     //servo3.writeMicroseconds(1090-cmd);
   }
-  
+  */
 
 }

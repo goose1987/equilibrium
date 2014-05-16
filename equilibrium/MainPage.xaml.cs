@@ -108,7 +108,9 @@ namespace equilibrium
             });
 
             updateMotorDrive(data[0]);
+            updateMotorDrive(data[1]);
             updateMotorDrive(data[2]);
+            updateMotorDrive(data[3]);
         }
 
         void mflightbox_accelEvent(float[] __param0)
