@@ -74,7 +74,7 @@ namespace kuntakinte
 		//Threads 
 		IAsyncAction ^ threadHandle;
 		
-	
+		float offset;
 
     public:
 
@@ -102,7 +102,7 @@ namespace kuntakinte
 
 		int yawPID(float yaw);
 
-		
+		void throttle(float incr);
 
 		void OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadingChangedEventArgs ^args);
 		void OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs^args);

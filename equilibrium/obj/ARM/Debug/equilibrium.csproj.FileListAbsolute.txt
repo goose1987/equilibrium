@@ -10,7 +10,12 @@ C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\AppManife
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\Properties\WMAppManifest.xml
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\equilibrium_Debug_ARM.xap
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\kuntakinte.winmd
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\kuntakinte.pdb
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libvideo.winmd
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\redbox.winmd
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\TextureGraph.winmd
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libvideo.pdb
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\redbox.pdb
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\TextureGraph.pdb
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.csprojResolveAssemblyReference.cache
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\App.g.cs
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\MainPage.g.cs
@@ -20,9 +25,4 @@ C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibri
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.dll
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.pdb
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\XapCacheFile.xml
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libvideo.winmd
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\redbox.winmd
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\TextureGraph.winmd
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libvideo.pdb
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\redbox.pdb
-C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\TextureGraph.pdb
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\kuntakinte.pdb

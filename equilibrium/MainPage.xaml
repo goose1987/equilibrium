@@ -64,17 +64,7 @@
             <TextBlock x:Name="motor2" HorizontalAlignment="Left" Margin="341,144,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor1" HorizontalAlignment="Left" Margin="341,112,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor3" HorizontalAlignment="Left" Margin="341,176,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-            <Slider HorizontalAlignment="Left" Margin="-67,337,0,0" VerticalAlignment="Top" Width="261" RenderTransformOrigin="0.5,0.5" Height="95" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                <Slider.RenderTransform>
-                    <CompositeTransform Rotation="-90"/>
-                </Slider.RenderTransform>
-            </Slider>
-            <Slider HorizontalAlignment="Left" Margin="58,337,0,0" VerticalAlignment="Top" Width="261" RenderTransformOrigin="0.5,0.5" Height="95" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                <Slider.RenderTransform>
-                    <CompositeTransform Rotation="-90"/>
-                </Slider.RenderTransform>
-            </Slider>
-            <Slider HorizontalAlignment="Left" Margin="233,335,-38,0" VerticalAlignment="Top" Width="261" RenderTransformOrigin="0.5,0.5" Height="95" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Slider x:Name="throttleSlider" HorizontalAlignment="Left" Margin="231,317,-36,0" VerticalAlignment="Top" Width="261" RenderTransformOrigin="0.5,0.5" Height="95" UseLayoutRounding="False" d:LayoutRounding="Auto" ValueChanged="throttleSlider_ValueChanged" Maximum="200">
                 <Slider.RenderTransform>
                     <CompositeTransform Rotation="-90"/>
                 </Slider.RenderTransform>

@@ -107,10 +107,10 @@ namespace equilibrium
                 motor3.Text = data[3].ToString();
             });
 
-            updateMotorDrive(data[0]);
-            updateMotorDrive(data[1]);
-            updateMotorDrive(data[2]);
-            updateMotorDrive(data[3]);
+            updateMotorDrive(data);
+            //updateMotorDrive(data[1]);
+            //updateMotorDrive(data[2]);
+            //updateMotorDrive(data[3]);
         }
 
         void mflightbox_accelEvent(float[] __param0)
@@ -200,9 +200,9 @@ namespace equilibrium
         }
 
 
-        private async void updateMotorDrive(int cmd)
+        private async void updateMotorDrive(int[] cmd)
         {
-            await mConManager.SendCommand((short)cmd);
+            await mConManager.SendCommand(cmd);
         }
 
         private void ConnectAppToDeviceButton_Click(object sender, RoutedEventArgs e)
@@ -221,6 +221,11 @@ namespace equilibrium
             //Reco1_Click(sender, e);
             boutThatAction();
             //Listen();
+        }
+
+        private void throttleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mflightbox.throttle((float)e.NewValue);
         }
 
     }

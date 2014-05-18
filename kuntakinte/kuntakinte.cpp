@@ -45,12 +45,12 @@ flightbox::flightbox()
 	tick = inclinometer->ReportInterval/1000.0;
 
 	//set PID gain of roll loop
-	rollGain[0] = 0.5;
-	rollGain[1] = 0.01;
+	rollGain[0] = 1;
+	rollGain[1] = 0.05;
 	rollGain[2] = 1;
 	//set PID gain of pitch loop
-	pitchGain[0] = 0.5;
-	pitchGain[1] = 0.01;
+	pitchGain[0] = 1;
+	pitchGain[1] = 0.05;
 	pitchGain[2] = 1;
 
 	//set PID gain of yaw loop
@@ -65,6 +65,7 @@ flightbox::flightbox()
 	//init motors array
 	motors = ref new Platform::Array<int>(4);
 
+	offset = 1000;
 	
 }
 
@@ -110,7 +111,7 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	rpy[2] = args->Reading->YawDegrees;
 
 
-	int offset = 1090;
+	//int offset = 1090;
 	//calculate PI for roll
 	motors[0] = rollGain[0] * rpy[ROLL] + rollGain[1] * rpyint[ROLL];
 	motors[2] = offset-motors[0];
@@ -158,4 +159,8 @@ void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadin
 	//position[0] = args->Reading->AccelerationZ;
 	//accelEvent(position);
 	//throw ref new Platform::NotImplementedException();
+}
+
+void flightbox::throttle(float incr){
+	offset = 1000 + incr;
 }
