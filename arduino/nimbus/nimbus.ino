@@ -18,8 +18,8 @@ red = plus
 brown is ground
 ********************/
 
-const int TX_BT = 10;
-const int RX_BT = 11;
+//const int TX_BT = 10;
+//const int RX_BT = 11;
 
 int i=0;
 float cmdOut = 0;
@@ -32,7 +32,7 @@ int m3pwm=0;
 int cmd=0; 
 String echo="";
 
-SoftwareSerial btSerial(TX_BT,RX_BT);
+//SoftwareSerial btSerial(TX_BT,RX_BT);
 
 //function to arm servo during init
 void arm(){
@@ -55,10 +55,10 @@ void setup() {
   
   //initialize serial comm through USB
   Serial.begin(9600);
-  Serial.println("USB Connected");
+  //Serial.println("USB Connected");
   
   //initialize serial com through bluetooth
-  btSerial.begin(9600);
+  //btSerial.begin(9600);
   
   //servo init
   //attach dedicate pin to servo
