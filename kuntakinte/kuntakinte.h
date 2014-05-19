@@ -71,12 +71,20 @@ namespace kuntakinte
 		//integral rpy
 		float rpyint[3];
 
+		
+		//integral of angular velocity
+		float omegaint[3];
+
 		//Threads 
 		IAsyncAction ^ threadHandle;
 		
 		float offset;
+		float innerloop;
 
     public:
+
+		//angular velocity array
+		property Platform::Array<float>^ omega;
 
 		//roll pitch yaw float array
 		property Platform::Array<float>^ rpy;
