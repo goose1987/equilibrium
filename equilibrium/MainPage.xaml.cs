@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Hoang Pham
  * 4/2/2014
  * window phone controlled quad
@@ -78,20 +78,7 @@ namespace equilibrium
 
             mflightbox.motorEvent += mflightbox_motorEvent;
 
-            //initialize objects ahead of time to avoid delays when starting recognition.
-            //recoWithUI = new SpeechRecognizerUI();
-
-            //set path to SRGS compliant XML file
-            //Uri citiesGrammar = new Uri("ms-appx:///CitiesList.grxml", UriKind.Absolute);
-
-            //add SRGS grammar to grammar set
-            //recoWithUI.Recognizer.Grammars.AddGrammarFromUri("cities", citiesGrammar);
-
-            //let user know what to say
-            //recoWithUI.Settings.ListenText = "Fly to what city?";
-
-            //give example of expected input
-            //recoWithUI.Settings.ExampleText = "'Barcelona','Montreal','Santiago'";
+           
             mConManager.Initialize();
         }
 
