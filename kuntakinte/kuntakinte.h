@@ -79,7 +79,8 @@ namespace kuntakinte
 		IAsyncAction ^ threadHandle;
 		
 		float offset;
-		float innerloop;
+		float innerloopRoll;
+		float innerloopPitch;
 
     public:
 

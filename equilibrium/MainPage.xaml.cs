@@ -40,6 +40,7 @@ using System.Windows.Media.Imaging;
 
 using Windows.Phone.Speech.Recognition;
 using Windows.Phone.Speech.Synthesis;
+using System.Windows.Threading;
 
 
 
@@ -59,8 +60,12 @@ namespace equilibrium
         //declare speechrecognizerUI 
         SpeechRecognizerUI recoWithUI;
 
+        //timer
+        DispatcherTimer timer;
 
 
+        //throttle
+        float mthrottle;
 
         // Constructor
         public MainPage()
@@ -80,6 +85,15 @@ namespace equilibrium
 
            
             mConManager.Initialize();
+
+
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Tick += new EventHandler(timer_Tick);
+            //timer.Start();
+            mthrottle = 0;
+
         }
 
         void mflightbox_motorEvent(int[] data)
@@ -206,13 +220,33 @@ namespace equilibrium
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Reco1_Click(sender, e);
-            boutThatAction();
+            //boutThatAction();
+            timer.Start();
             //Listen();
         }
 
         private void throttleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            mflightbox.throttle((float)e.NewValue);
+           mflightbox.throttle((float)e.NewValue);
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+
+            mthrottle += 20;
+            
+
+            if (mthrottle > timedThrottle.Value)
+            {
+                mthrottle = 0;
+                timer.Stop();              
+            }
+            mflightbox.throttle(mthrottle);
+        }
+
+        private void timedThrottle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
 
     }
