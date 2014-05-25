@@ -56,6 +56,9 @@ namespace equilibrium
         float pitch;
         float yaw;
 
+        float myPgain = 0;
+        float myIgain = 0;
+        float myDgain = 0;
 
         //declare speechrecognizerUI 
         SpeechRecognizerUI recoWithUI;
@@ -247,6 +250,14 @@ namespace equilibrium
         private void timedThrottle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (float.TryParse(pGain.Text, out myPgain)&&float.TryParse(iGain.Text,out myIgain)&&float.TryParse(dGain.Text,out myDgain))
+            {
+                mflightbox.rollPID(myPgain,myIgain,myDgain);
+            }
         }
 
     }

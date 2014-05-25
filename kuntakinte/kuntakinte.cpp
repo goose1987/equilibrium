@@ -42,7 +42,7 @@ flightbox::flightbox()
 	accelerometer->ReportInterval = 100;
 	accelerometer->ReadingChanged::add(ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged));
 	
-	tick = inclinometer->ReportInterval/1000.0;
+	tick = gyrometer->ReportInterval/1000.0;
 
 	//set PID gain of roll loop
 	rollGain[0] = 0.3;
@@ -86,15 +86,21 @@ int flightbox::calibrate(float roll, float pitch, float yaw){
 	
 }
 
-int flightbox::rollPID(float roll){
+int flightbox::rollPID(float rP,float rI,float rD){
+	rollGain[0] = rP;
+	rollGain[1] = rI;
+	rollGain[2] = rD;
 	return 0;
 }
 
-int flightbox::pitchPID(float roll){
+int flightbox::pitchPID(float pP,float pI,float pD){
+	pitchGain[0] = pP;
+	pitchGain[1] = pI;
+	pitchGain[2] = pD;
 	return 0;
 }
 
-int flightbox::yawPID(float yaw){
+int flightbox::yawPID(float yP,float yI,float yD){
 	return 0;
 }
 
@@ -104,9 +110,9 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 
 	//roll and pitch goes from -180 to 180
 	//integrate roll; running sum
-	rpyint[ROLL] += (rpy[ROLL] + args->Reading->RollDegrees) / 2 * tick;
+	//rpyint[ROLL] += (rpy[ROLL] + args->Reading->RollDegrees) / 2 * tick;
 	//integrate pitch
-	rpyint[PITCH] += (rpy[PITCH] + args->Reading->PitchDegrees) / 2 * tick;
+	//rpyint[PITCH] += (rpy[PITCH] + args->Reading->PitchDegrees) / 2 * tick;
 	//integrate yaw
 	//yaw goes from 0 to 360 NEED TO ACCOUNT FOR THIS //////////////////////
 	
@@ -116,6 +122,9 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	rpy[ROLL] = args->Reading->RollDegrees;
 	rpy[PITCH] = args->Reading->PitchDegrees;
 	rpy[YAW] = args->Reading->YawDegrees;
+
+	/*
+	
 
 	innerloopRoll = rollGain[0] * rpy[ROLL] + rollGain[1] * rpyint[ROLL] + rollGain[2] * omega[ROLL];
 	innerloopPitch = pitchGain[0] * rpy[PITCH] + pitchGain[1] * rpyint[PITCH] + pitchGain[2] * omega[PITCH];
@@ -140,6 +149,8 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	motors[2] = offset-motors[0];
 	motors[0] += offset;
 	*/
+
+	/*
 	//calculate PI for pitch
 	motors[1] = innerloopPitch;
 	motors[3] = offset-motors[1];
@@ -151,7 +162,7 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	//throw ref new Platform::NotImplementedException();
 	//inclineEvent(rpy);
 	motorEvent(motors);
-	
+	*/
 	
 }
 
@@ -168,19 +179,21 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	omega[PITCH] = args->Reading->AngularVelocityX;
 	omega[YAW] = args->Reading->AngularVelocityZ;
 
-	/*
+	
 	//calculate PI for roll
-	motors[0] = rollGain[0] * rpy[ROLL]+rollGain[0] * omega[ROLL] + rollGain[1] * omegaint[ROLL];
+	motors[0] = rollGain[0] * rpy[ROLL]+rollGain[2] * omega[ROLL];
 	motors[2] = offset - motors[0];
 	motors[0] = offset + motors[0];
 
+
+
 	//calculate PI for pitch
-	motors[1] = pitchGain[0] * rpy[PITCH]+pitchGain[0] * omega[PITCH] + pitchGain[1] * omegaint[PITCH];
+	motors[1] = pitchGain[0] * rpy[PITCH]+pitchGain[2] * omega[PITCH];
 	motors[3] = offset - motors[1];
 	motors[1] = offset + motors[1];
 
 	motorEvent(motors);
-	*/
+	
 }
 
 

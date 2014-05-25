@@ -105,11 +105,11 @@ namespace kuntakinte
 
 		//int balance(double roll, double pitch, double yaw);
 
-		int rollPID(float roll);
+		int rollPID(float rP,float rI,float rD);
 
-		int pitchPID(float pitch);
+		int pitchPID(float pP,float pI,float pD);
 
-		int yawPID(float yaw);
+		int yawPID(float yP,float yI,float yD);
 
 		void throttle(float incr);
 

@@ -57,7 +57,7 @@
             <TextBlock x:Name="motor0" HorizontalAlignment="Left" Margin="341,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <Button x:Name="ConnectAppToDeviceButton" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="ConnectAppToDeviceButton_Click"/>
             <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="144,0,0,0" TextWrapping="Wrap" Text="linvor" VerticalAlignment="Top" Width="279"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="0,525,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button Content="Run" HorizontalAlignment="Left" Margin="0,525,0,0" VerticalAlignment="Top" Click="Button_Click" Width="130"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,112,0,0" TextWrapping="Wrap" Text="motor 1" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,144,0,0" TextWrapping="Wrap" Text="motor 2" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,176,0,0" TextWrapping="Wrap" Text="motor 3" VerticalAlignment="Top"/>
@@ -74,6 +74,13 @@
                     <CompositeTransform Rotation="-90"/>
                 </Slider.RenderTransform>
             </Slider>
+            <Button Content="update gain" HorizontalAlignment="Left" Margin="249,525,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+            <TextBox x:Name="pGain" HorizontalAlignment="Left" Height="72" Margin="195,239,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="77"/>
+            <TextBox x:Name="iGain" HorizontalAlignment="Left" Height="72" Margin="195,316,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="77"/>
+            <TextBox x:Name="dGain" HorizontalAlignment="Left" Height="72" Margin="195,388,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="77"/>
+            <TextBlock HorizontalAlignment="Left" Margin="163,264,0,0" TextWrapping="Wrap" Text="P" VerticalAlignment="Top" Width="27"/>
+            <TextBlock HorizontalAlignment="Left" Margin="163,341,0,0" TextWrapping="Wrap" Text="I" VerticalAlignment="Top" Width="27"/>
+            <TextBlock HorizontalAlignment="Left" Margin="163,413,0,0" TextWrapping="Wrap" Text="D" VerticalAlignment="Top" Width="27"/>
 
         </Grid>
 
