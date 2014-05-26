@@ -265,6 +265,7 @@ namespace equilibrium
             if (float.TryParse(pGain.Text, out myPgain)&&float.TryParse(iGain.Text,out myIgain)&&float.TryParse(dGain.Text,out myDgain))
             {
                 mflightbox.rollPID(myPgain,myIgain,myDgain);
+                mflightbox.pitchPID(myPgain, myIgain, myDgain);
             }
         }
 
