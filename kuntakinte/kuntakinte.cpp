@@ -91,7 +91,7 @@ flightbox::flightbox()
 	pitchRateE = 0;
 	pitchRateEint = 0;
 
-	
+	fault = 0;
 }
 
 
@@ -194,6 +194,18 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	motors[3] = offset - (pitchRateG[0] * pitchRateE + pitchRateG[1] * pitchRateEint);
 
 	//inclineEvent(omega);
+
+	if (rpy[ROLL] > 90 || rpy[ROLL]<-90 || rpy[PITCH]>90 || rpy[PITCH] < -90){
+		fault = 1;
+	}
+
+	if (fault>0){
+		motors[0] = 0;
+		motors[1] = 0;
+		motors[2] = 0;
+		motors[3] = 0;
+	}
+
 	motorEvent(motors);
 	
 }
