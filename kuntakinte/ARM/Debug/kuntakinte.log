@@ -1,16 +1,16 @@
-﻿Build started 5/25/2014 9:33:54 AM.
+﻿Build started 5/25/2014 6:24:04 PM.
      1>Project "C:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\kuntakinte.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /IC:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _WINRT_DLL /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"ARM\Debug\kuntakinte.pch" /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt kuntakinte.cpp
          kuntakinte.cpp
-     1>kuntakinte.cpp(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>kuntakinte.cpp(48): warning C4305: '=' : truncation from 'double' to 'float'
+     1>kuntakinte.cpp(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>kuntakinte.cpp(49): warning C4305: '=' : truncation from 'double' to 'float'
-     1>kuntakinte.cpp(52): warning C4305: '=' : truncation from 'double' to 'float'
+     1>kuntakinte.cpp(50): warning C4305: '=' : truncation from 'double' to 'float'
      1>kuntakinte.cpp(53): warning C4305: '=' : truncation from 'double' to 'float'
-     1>kuntakinte.cpp(174): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>kuntakinte.cpp(176): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>kuntakinte.cpp(203): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>kuntakinte.cpp(54): warning C4305: '=' : truncation from 'double' to 'float'
+     1>kuntakinte.cpp(175): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>kuntakinte.cpp(177): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>kuntakinte.cpp(204): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\kuntakinte.obj
          ARM\Debug\pch.obj
@@ -20,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.16
+Time Elapsed 00:00:00.63

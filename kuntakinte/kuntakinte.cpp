@@ -34,7 +34,8 @@ flightbox::flightbox()
 
 	//get gyroscope
 	gyrometer = Gyrometer::GetDefault();
-	gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
+	//gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
+	gyrometer->ReportInterval = 4;
 	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));	
 
 	//get accelerometer
@@ -68,7 +69,7 @@ flightbox::flightbox()
 	//init motors array
 	motors = ref new Platform::Array<int>(4);
 
-	offset = 1000;
+	offset = 50;
 	innerloopRoll = 0;
 	innerloopPitch = 0;
 	
@@ -216,5 +217,5 @@ void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadin
 }
 
 void flightbox::throttle(float incr){
-	offset = 1000 + incr;
+	offset = 50 + incr;
 }
