@@ -43,6 +43,7 @@ namespace kuntakinte
 		//time
 		float tickgyro;
 		float tickincline;
+		float tickaccel;
 
 		//acceleration
 		float ax;
@@ -92,6 +93,12 @@ namespace kuntakinte
 		float offset;
 		float cmdRollRate;
 		float cmdPitchRate;
+
+		float rollE;
+		float pitchE;
+		
+		float rollEint;
+		float pitchEint;
 
 		float rollRateE;
 		float pitchRateE;
