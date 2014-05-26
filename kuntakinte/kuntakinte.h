@@ -41,7 +41,8 @@ namespace kuntakinte
 		float wz;
 
 		//time
-		float tick;
+		float tickgyro;
+		float tickincline;
 
 		//acceleration
 		float ax;
@@ -69,9 +70,11 @@ namespace kuntakinte
 		//PID gain of roll;
 		float rollGain[3];
 		
+		float rollRateG[3];
 
 		//PID gain of pitch;
 		float pitchGain[3];
+		float pitchRateG[3];
 
 		//PID gain of yaw;
 		float yawGain[3];
@@ -87,8 +90,14 @@ namespace kuntakinte
 		IAsyncAction ^ threadHandle;
 		
 		float offset;
-		float innerloopRoll;
-		float innerloopPitch;
+		float cmdRollRate;
+		float cmdPitchRate;
+
+		float rollRateE;
+		float pitchRateE;
+
+		float rollRateEint;
+		float pitchRateEint;
 
     public:
 

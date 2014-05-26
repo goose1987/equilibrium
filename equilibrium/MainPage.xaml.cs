@@ -82,7 +82,7 @@ namespace equilibrium
             mflightbox = new flightbox(); // initialize a new flightbox
 
 
-            //mflightbox.inclineEvent += fb_inclineEvent;
+            mflightbox.inclineEvent += fb_inclineEvent;
 
             mflightbox.motorEvent += mflightbox_motorEvent;
 
