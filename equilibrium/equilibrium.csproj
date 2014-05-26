@@ -116,6 +116,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="equilibrium_2014_05_25_18_50_09.sap" />
+    <None Include="equilibrium_2014_05_25_18_51_44.sap" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
     </None>

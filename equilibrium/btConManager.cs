@@ -143,6 +143,11 @@ namespace BluetoothConnectionManager
                 dataWriter.WriteByte((byte)value[2]);
                 dataWriter.WriteByte((byte)value[3]);
 
+                if (dataWriter.UnstoredBufferLength >32 )
+                {
+                    await dataWriter.StoreAsync();
+                }
+
                 /*
                 dataWriter.WriteInt16((short)value[0]);
                 dataWriter.WriteInt16((short)value[1]);
@@ -151,7 +156,7 @@ namespace BluetoothConnectionManager
                 */
                 //sentCommandSize = dataWriter.WriteByte((byte)value);
                 
-                await dataWriter.StoreAsync();
+                
 
             }
             return sentCommandSize;

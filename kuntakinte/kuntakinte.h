@@ -3,6 +3,9 @@
 
 using namespace Windows::Foundation;
 using namespace Windows::Devices::Sensors;
+using namespace Windows::Networking::Sockets;
+using namespace Windows::Storage::Streams;
+using namespace Windows::Networking::Proximity;
 
 
 //this is what does all the work
@@ -17,6 +20,11 @@ namespace kuntakinte
     public ref class flightbox sealed
     {
 	private:
+
+
+		StreamSocket^ socket;
+		DataWriter^ dataWriter;
+
 
 		Inclinometer^ inclinometer;
 		Gyrometer^ gyrometer;
@@ -117,6 +125,7 @@ namespace kuntakinte
 		void OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs^args);
 		void OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args);
 
+		void initBt();
 		
 	};
 }

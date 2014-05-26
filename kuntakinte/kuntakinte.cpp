@@ -34,8 +34,9 @@ flightbox::flightbox()
 
 	//get gyroscope
 	gyrometer = Gyrometer::GetDefault();
-	//gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
-	gyrometer->ReportInterval = 4;
+	gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
+	//gyrometer->ReportInterval = 4;
+	
 	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));	
 
 	//get accelerometer
@@ -73,6 +74,21 @@ flightbox::flightbox()
 	innerloopRoll = 0;
 	innerloopPitch = 0;
 	
+
+	
+}
+
+
+void flightbox::initBt(){
+
+	/*
+	PeerFinder::FindAllPeersAsync();
+	
+
+	socket = ref new StreamSocket();
+	socket->ConnectAsync(;
+	dataWriter = ref new DataWriter(socket->OutputStream);
+	*/
 }
 
 int flightbox::calibrate(float roll, float pitch, float yaw){

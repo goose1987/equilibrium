@@ -82,7 +82,7 @@ namespace equilibrium
             mflightbox = new flightbox(); // initialize a new flightbox
 
 
-            mflightbox.inclineEvent += fb_inclineEvent;
+            //mflightbox.inclineEvent += fb_inclineEvent;
 
             mflightbox.motorEvent += mflightbox_motorEvent;
 
@@ -99,19 +99,27 @@ namespace equilibrium
 
         }
 
-        void mflightbox_motorEvent(int[] data)
+        async void mflightbox_motorEvent(int[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
+            await mConManager.SendCommand(data);
+           
             Dispatcher.BeginInvoke(() =>
             {
+
+                
                 motor0.Text = data[0].ToString();
                 motor1.Text = data[1].ToString();
                 motor2.Text = data[2].ToString();
                 motor3.Text = data[3].ToString();
-            });
 
-            updateMotorDrive(data);
+                //updateMotorDrive(data);
+            });
+            
+
+            
+            
             //updateMotorDrive(data[1]);
             //updateMotorDrive(data[2]);
             //updateMotorDrive(data[3]);
