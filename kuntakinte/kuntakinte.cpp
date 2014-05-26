@@ -70,7 +70,7 @@ flightbox::flightbox()
 	//init motors array
 	motors = ref new Platform::Array<int>(4);
 
-	offset = 50;
+	offset = 1000;
 	innerloopRoll = 0;
 	innerloopPitch = 0;
 	
@@ -233,5 +233,5 @@ void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadin
 }
 
 void flightbox::throttle(float incr){
-	offset = 50 + incr;
+	offset = 1000 + incr;
 }
