@@ -106,6 +106,9 @@ namespace kuntakinte
 		float rollRateEint;
 		float pitchRateEint;
 
+
+		float fault;
+
     public:
 
 		//angular velocity array
