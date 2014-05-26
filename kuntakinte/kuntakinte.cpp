@@ -185,14 +185,14 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	pitchRateEint += (pitchRateEprev + pitchRateE) / 2 * tickgyro;
 
 	//calculate PI for roll
-	motors[0] = rollRateG[0] * rollRateE+rollRateG[1]*rollRateEint;
+	motors[0] = (rollRateG[0] * rollRateE + rollRateG[1] * rollRateEint) / 2 + (pitchRateG[0] * pitchRateE + pitchRateG[1] * pitchRateEint)/2;
 	motors[2] = offset - motors[0];
 	motors[0] = offset + motors[0];
 
 
 
 	//calculate PI for pitch
-	motors[1] = pitchRateG[0] * pitchRateE+pitchRateG[1]*pitchRateEint;
+	motors[1] = (rollRateG[0] * rollRateE + rollRateG[1] * rollRateEint) / 2+(pitchRateG[0] * pitchRateE + pitchRateG[1] * pitchRateEint)/2;
 	motors[3] = offset - motors[1];
 	motors[1] = offset + motors[1];
 

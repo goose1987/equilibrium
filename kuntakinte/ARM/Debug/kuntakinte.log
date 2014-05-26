@@ -1,12 +1,5 @@
-﻿Build started 5/26/2014 11:52:57 AM.
-     1>Project "C:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\kuntakinte.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\kuntakinte.obj
-         ARM\Debug\pch.obj
-            Creating library C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.lib and object C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.exp
-         kuntakinte.vcxproj -> C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll
-     1>Done Building Project "C:\Users\phamh3\Documents\GitHub\equilibrium\kuntakinte\kuntakinte.vcxproj" (Build target(s)).
+﻿Build started 5/26/2014 3:28:18 PM.
 
 Build succeeded.
 
-Time Elapsed 00:00:00.24
+Time Elapsed 00:00:00.01
