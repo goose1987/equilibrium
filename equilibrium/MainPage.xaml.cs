@@ -56,6 +56,10 @@ namespace equilibrium
         float pitch;
         float yaw;
 
+        short rollrate;
+        short pitchrate;
+        short yawrate;
+
         float myPgain = 0;
         float myIgain = 0;
         float myDgain = 0;
@@ -99,30 +103,16 @@ namespace equilibrium
 
         }
 
-        async void mflightbox_motorEvent(int[] data)
+        async void mflightbox_motorEvent(float[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
-            await mConManager.SendCommand(data);
-           
-            Dispatcher.BeginInvoke(() =>
-            {
+            //await mConManager.SendCommand(data);
+            rollrate = Convert.ToInt16(data[0]);
+            pitchrate = Convert.ToInt16(data[1]);
 
-                
-                motor0.Text = data[0].ToString();
-                motor1.Text = data[1].ToString();
-                motor2.Text = data[2].ToString();
-                motor3.Text = data[3].ToString();
-
-                //updateMotorDrive(data);
-            });
+            await mConManager.SendCommand(rollrate);
             
-
-            
-            
-            //updateMotorDrive(data[1]);
-            //updateMotorDrive(data[2]);
-            //updateMotorDrive(data[3]);
         }
 
         void mflightbox_accelEvent(float[] __param0)
@@ -212,10 +202,7 @@ namespace equilibrium
         }
 
 
-        private async void updateMotorDrive(int[] cmd)
-        {
-            await mConManager.SendCommand(cmd);
-        }
+       
 
         private void ConnectAppToDeviceButton_Click(object sender, RoutedEventArgs e)
         {

@@ -174,39 +174,8 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	omega[ROLL] = args->Reading->AngularVelocityY;
 	omega[PITCH] = args->Reading->AngularVelocityX;
 	omega[YAW] = args->Reading->AngularVelocityZ;
-
-	float rollRateEprev = rollRateE;
-	float pitchRateEprev = pitchRateE;
-
-	rollRateE = cmdRollRate - omega[ROLL];
-	pitchRateE = cmdPitchRate - omega[PITCH];
 	
-	rollRateEint += (rollRateEprev + rollRateE) / 2 * tickgyro;
-	pitchRateEint += (pitchRateEprev + pitchRateE) / 2 * tickgyro;
-
-	//calculate PI for roll
-	motors[0] = offset + (rollRateG[0] * rollRateE+rollRateG[1]*rollRateEint);
-	motors[2] = offset - (rollRateG[0] * rollRateE + rollRateG[1] * rollRateEint);
-
-
-	//calculate PI for pitch
-	motors[1] = offset + (pitchRateG[0] * pitchRateE+pitchRateG[1]*pitchRateEint);
-	motors[3] = offset - (pitchRateG[0] * pitchRateE + pitchRateG[1] * pitchRateEint);
-
-	//inclineEvent(omega);
-
-	if (rpy[ROLL] > 90 || rpy[ROLL]<-90 || rpy[PITCH]>90 || rpy[PITCH] < -90){
-		fault = 1;
-	}
-
-	if (fault>0){
-		motors[0] = 0;
-		motors[1] = 0;
-		motors[2] = 0;
-		motors[3] = 0;
-	}
-
-	motorEvent(motors);
+	motorEvent(omega);
 	
 }
 

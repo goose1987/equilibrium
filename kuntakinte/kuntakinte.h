@@ -15,7 +15,7 @@ namespace kuntakinte
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
 	public delegate void accelCallback(const Platform::Array<float>^ data);
-	public delegate void motorCallback(const Platform::Array<int>^ data);
+	public delegate void motorCallback(const Platform::Array<float>^ data);
 
     public ref class flightbox sealed
     {
