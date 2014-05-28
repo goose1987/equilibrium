@@ -28,8 +28,8 @@ int m6pwm=0;
 int m5pwm=0;
 int m3pwm=0;
 
-int cmd=0; 
-String echo="";
+double rollrateSP,rollrate,rollrateout;
+PID rollratePID(&rollrate,&rollrateout,&rollrateSP,2,5,1, DIRECT);
 
 
 
@@ -48,6 +48,7 @@ void setup() {
   servo3.attach(M3,1000,2000);
   ///////////////////////////////
 
+  rollratePID.SetMode(AUTOMATIC);
   
 }
 
@@ -56,28 +57,9 @@ void loop() {
   
   //read bluetooth serial buffer
   
-  while(Serial.available()>=8){
-    /*
-    //m9pwm=0;
-    m9pwm=(Serial.read()<<8)|Serial.read();
+  while(Serial.available()>=2){
+    rollrate=(double)(Serial.read()<<8|Serial.read());
     
-    //m5pwm=0;
-
-    m5pwm=(Serial.read()<<8)|Serial.read();
-    //m3pwm=0;
-
-    m3pwm=(Serial.read()<<8)|Serial.read();
-    //m6pwm=0;
-
-
-    m6pwm = (Serial.read()<<8)|Serial.read();
-    */
-    servo3.writeMicroseconds((Serial.read()<<8)|Serial.read()); 
-    servo6.writeMicroseconds((Serial.read()<<8)|Serial.read());
-    servo9.writeMicroseconds((Serial.read()<<8)|Serial.read());    
-    servo5.writeMicroseconds((Serial.read()<<8)|Serial.read());
-  
-  
   }
 
 }
