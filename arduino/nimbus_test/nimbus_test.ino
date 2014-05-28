@@ -29,9 +29,9 @@ int m5pwm=0;
 int m3pwm=0;
 
 double rollrateSP,rollrate,rollrateout;
-PID rollratePID(&rollrate,&rollrateout,&rollrateSP,2,5,1, DIRECT);
+PID rollratePID(&rollrate,&rollrateout,&rollrateSP,2,0,1, DIRECT);
 
-
+double throttle=1000;
 
 void setup() {
   
@@ -49,6 +49,7 @@ void setup() {
   ///////////////////////////////
 
   rollratePID.SetMode(AUTOMATIC);
+  rollratePID.SetSampleTime(5);
   
 }
 
@@ -59,7 +60,10 @@ void loop() {
   
   while(Serial.available()>=2){
     rollrate=(double)(Serial.read()<<8|Serial.read());
+    rollratePID.Compute();
     
+    servo3.writeMicroseconds(throttle-rollrateout);
+    servo9.writeMicroseconds(throttle+rollrateout);
   }
 
 }
