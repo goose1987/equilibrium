@@ -148,9 +148,9 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	
 
 
-	rpy[ROLL] = args->Reading->RollDegrees;
-	rpy[PITCH] = args->Reading->PitchDegrees;
-	rpy[YAW] = args->Reading->YawDegrees;
+	rpy[ROLL] = args->Reading->RollDegrees*10;
+	rpy[PITCH] = args->Reading->PitchDegrees*10;
+	rpy[YAW] = args->Reading->YawDegrees*10;
 
 	inclineEvent(rpy);
 }

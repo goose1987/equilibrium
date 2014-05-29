@@ -52,9 +52,9 @@ namespace equilibrium
         flightbox mflightbox;
         btConManager mConManager;
 
-        SByte roll;
-        SByte pitch;
-        SByte yaw;
+        short roll;
+        short pitch;
+        short yaw;
 
         short rollrate;
         short pitchrate;
@@ -103,7 +103,7 @@ namespace equilibrium
 
         }
 
-        async void mflightbox_motorEvent(float[] data)
+        void mflightbox_motorEvent(float[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
@@ -112,7 +112,7 @@ namespace equilibrium
             rollrate = Convert.ToInt16(data[0]);
             pitchrate = Convert.ToInt16(data[1]);
 
-            await mConManager.SendCommand(rollrate);
+            
             Dispatcher.BeginInvoke(() =>
             {
                 rollrateindicator.Text = rollrate.ToString();
@@ -188,16 +188,18 @@ namespace equilibrium
         void fb_inclineEvent(float[] data)
         {
 
-            roll = Convert.ToSByte(data[0]);
-            pitch = Convert.ToSByte(data[1]);
+            //roll = Convert.ToInt16(data[0]);
+            //pitch = Convert.ToInt16(data[1]);
+
+            mConManager.SendCommand(data);
 
             Dispatcher.BeginInvoke(() =>
             {
                 
                 
-                rollTextBlock.Text = roll.ToString("f2");
-                pitchTextBlock.Text = pitch.ToString("f2");
-                yawTextBlock.Text = yaw.ToString("f2");
+                rollTextBlock.Text = (data[0]/10).ToString("f1");
+                pitchTextBlock.Text = (data[1]/10).ToString("f1");
+                yawTextBlock.Text = (data[2]/10).ToString("f1");
 
             });
 
