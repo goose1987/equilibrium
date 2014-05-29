@@ -200,7 +200,7 @@ namespace equilibrium
                 rollTextBlock.Text = (data[0]/10).ToString("f1");
                 pitchTextBlock.Text = (data[1]/10).ToString("f1");
                 yawTextBlock.Text = (data[2]/10).ToString("f1");
-
+                
             });
 
             //updateMotorDrive(roll);

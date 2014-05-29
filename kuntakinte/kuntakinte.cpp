@@ -163,7 +163,7 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	omega[PITCH] = args->Reading->AngularVelocityX;
 	omega[YAW] = args->Reading->AngularVelocityZ;
 	
-	motorEvent(omega);
+	//motorEvent(omega);
 	
 }
 
