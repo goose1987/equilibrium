@@ -52,9 +52,9 @@ namespace equilibrium
         flightbox mflightbox;
         btConManager mConManager;
 
-        float roll;
-        float pitch;
-        float yaw;
+        SByte roll;
+        SByte pitch;
+        SByte yaw;
 
         short rollrate;
         short pitchrate;
@@ -108,11 +108,16 @@ namespace equilibrium
             //throw new NotImplementedException();
             //updateMotorDrive(data);
             //await mConManager.SendCommand(data);
+            
             rollrate = Convert.ToInt16(data[0]);
             pitchrate = Convert.ToInt16(data[1]);
 
             await mConManager.SendCommand(rollrate);
-            
+            Dispatcher.BeginInvoke(() =>
+            {
+                rollrateindicator.Text = rollrate.ToString();
+                pitchrateindicator.Text = pitchrate.ToString();
+            });
         }
 
         void mflightbox_accelEvent(float[] __param0)
@@ -127,7 +132,7 @@ namespace equilibrium
         private async void boutThatAction()
         {
             SpeechSynthesizer synth = new SpeechSynthesizer();
-            await synth.SpeakTextAsync("nah, I'm Just about that action baus");
+            await synth.SpeakTextAsync("PETER WHERES MY PASEO !!!!");
 
         }
 
@@ -183,16 +188,16 @@ namespace equilibrium
         void fb_inclineEvent(float[] data)
         {
 
+            roll = Convert.ToSByte(data[0]);
+            pitch = Convert.ToSByte(data[1]);
+
             Dispatcher.BeginInvoke(() =>
             {
-                roll = data[0];
-                pitch = data[1];
-                yaw = data[2];
+                
+                
                 rollTextBlock.Text = roll.ToString("f2");
                 pitchTextBlock.Text = pitch.ToString("f2");
                 yawTextBlock.Text = yaw.ToString("f2");
-
-                
 
             });
 
@@ -218,8 +223,8 @@ namespace equilibrium
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Reco1_Click(sender, e);
-            //boutThatAction();
-            timer.Start();
+            boutThatAction();
+            //timer.Start();
             //Listen();
         }
 

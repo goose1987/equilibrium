@@ -140,31 +140,19 @@ int flightbox::yawPID(float yP,float yI,float yD){
 
 void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadingChangedEventArgs ^args)
 {
-
-
 	//roll and pitch goes from -180 to 180
 	//integrate roll; running sum
 	
 	//integrate yaw
 	//yaw goes from 0 to 360 NEED TO ACCOUNT FOR THIS //////////////////////
 	
-	
-	float rollEprev = 0-rpy[ROLL];
-	float pitchEprev = 0-rpy[PITCH];
-
-	rpy[ROLL] = 0-args->Reading->RollDegrees;
-	rpy[PITCH] = 0-args->Reading->PitchDegrees;
-	rpy[YAW] = 0-args->Reading->YawDegrees;
-
-	rollEint += (rollEprev + rpy[ROLL]) / 2 * tickincline;
-	pitchEint += (pitchEprev + rpy[PITCH]) / 2 * tickincline;
 
 
-	cmdRollRate = rollGain[0] * rpy[ROLL] + rollGain[1] * rollEint + rollGain[2] * (-omega[ROLL]);
-	cmdPitchRate = pitchGain[0] * rpy[PITCH] + pitchGain[1] * pitchEint + pitchGain[2] * (-omega[PITCH]);
+	rpy[ROLL] = args->Reading->RollDegrees;
+	rpy[PITCH] = args->Reading->PitchDegrees;
+	rpy[YAW] = args->Reading->YawDegrees;
 
-	
-	//inclineEvent(rpy);
+	inclineEvent(rpy);
 }
 
 void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs ^args){
