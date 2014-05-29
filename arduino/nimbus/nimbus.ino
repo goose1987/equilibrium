@@ -32,9 +32,13 @@ double rollSP,roll,rollcomp;
 
 double pitchSP,pitch,pitchcomp;
 
+double motor5,motor6;
+
 PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
 
-PID pitchPID(&pitch,&pitchcomp,&pitchSP,2,0.1,0.5,DIRECT);
+PID pitchPID(&pitch,&motor5,&pitchSP,0.6,1.5,0.1,REVERSE);
+
+PID pitchPID2(&pitch,&motor6,&pitchSP,0.6,1.5,0.1,DIRECT);
 
 int throttle;
 
@@ -71,18 +75,17 @@ void setup() {
 
   rollPID.SetMode(AUTOMATIC);
   pitchPID.SetMode(AUTOMATIC);
-  
+  pitchPID2.SetMode(AUTOMATIC);
   
   rollPID.SetSampleTime(20);
   pitchPID.SetSampleTime(20);
+  pitchPID2.SetSampleTime(20);
   
-  rollPID.SetOutputLimits(-100,100);
-  pitchPID.SetOutputLimits(-100,100);
   
   rollSP=0;
   pitchSP=0;
   
-  throttle=1100;
+  throttle=1200;
   
 }
 
@@ -96,12 +99,20 @@ void loop() {
     roll=((double)(Serial.read()<<8|Serial.read()))/10;
     pitch=((double)(Serial.read()<<8|Serial.read()))/10;
     
-    rollPID.Compute();
-    pitchPID.Compute();
-    
-    servo6.writeMicroseconds(throttle+pitchcomp);
-    servo5.writeMicroseconds(throttle-pitchcomp);
-    
+    if(roll>100||roll<-100){
+      
+       Serial.flush(); 
+    }else{
+      
+      
+      
+      //rollPID.Compute();
+      pitchPID.Compute();
+      pitchPID2.Compute();
+      
+      servo6.writeMicroseconds(throttle+motor6);
+      servo5.writeMicroseconds(throttle+motor5);
+    }
     
     
     
