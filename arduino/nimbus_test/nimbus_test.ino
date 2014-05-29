@@ -13,6 +13,8 @@ Servo servo6;
 Servo servo5;
 Servo servo3;
 
+const int TX_BT = 10;
+const int RX_BT = 11;
 /********************
 brushless esc wire 
 orange = signal
@@ -28,10 +30,31 @@ int m6pwm=0;
 int m5pwm=0;
 int m3pwm=0;
 
-double rollrateSP,rollrate,rollrateout;
-PID rollratePID(&rollrate,&rollrateout,&rollrateSP,2,0,1, DIRECT);
+double rollSP,roll,rollcomp;
+int foo;
 
-double throttle=1000;
+PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
+
+
+SoftwareSerial btSerial(TX_BT,RX_BT);
+
+int throttle;
+
+void arm(){
+  
+  servo5.writeMicroseconds(2500);
+  servo6.writeMicroseconds(2500);
+  servo9.writeMicroseconds(2500);
+  servo3.writeMicroseconds(2500);
+  delay(2000);
+  //servo1.writeMicroseconds(2500);
+  servo5.writeMicroseconds(1000);
+  servo6.writeMicroseconds(1000);
+  servo9.writeMicroseconds(1000);
+  servo3.writeMicroseconds(1000);
+  
+  
+}
 
 void setup() {
   
@@ -39,17 +62,27 @@ void setup() {
   Serial.begin(38400); //38400
   Serial.println("USB Connected");
 
+  btSerial.begin(19200);
   
   //servo init
   //attach dedicate pin to servo
-  servo9.attach(M9,1000,2000);
-  servo6.attach(M6,1000,2000);
-  servo5.attach(M5,1000,2000);
-  servo3.attach(M3,1000,2000);
+  servo9.attach(M9);
+  servo6.attach(M6);
+  servo5.attach(M5);
+  servo3.attach(M3);
+  arm();
   ///////////////////////////////
 
-  rollratePID.SetMode(AUTOMATIC);
-  rollratePID.SetSampleTime(5);
+  rollPID.SetMode(AUTOMATIC);
+  
+  
+  
+  rollPID.SetSampleTime(20);
+  rollPID.SetOutputLimits(-100,100);
+  
+  rollSP=0;
+  
+  throttle=1100;
   
 }
 
@@ -58,12 +91,19 @@ void loop() {
   
   //read bluetooth serial buffer
   
-  while(Serial.available()>=2){
-    rollrate=(double)(Serial.read()<<8|Serial.read());
-    rollratePID.Compute();
+  if(btSerial.available()>=2){
     
-    servo3.writeMicroseconds(throttle-rollrateout);
-    servo9.writeMicroseconds(throttle+rollrateout);
+    roll=((double)(btSerial.read()<<8|btSerial.read()))/10;
+    
+    rollPID.Compute();
+    
+    servo6.writeMicroseconds(throttle+rollcomp);
+    servo5.writeMicroseconds(throttle-rollcomp);
+    Serial.println(rollcomp);
+    
+    
+    
   }
+  
 
 }

@@ -14,31 +14,31 @@ Servo servo5;
 Servo servo3;
 
 /********************
-brushless esc wire 
-orange = signal
-red = plus
-brown is ground
-********************/
+ * brushless esc wire 
+ * orange = signal
+ * red = plus
+ * brown is ground
+ ********************/
 
 int i=0;
 float cmdOut = 0;
- 
+
 int m9pwm=0;
 int m6pwm=0;
 int m5pwm=0;
 int m3pwm=0;
 
-double rollSP,roll,rollcomp;
+double rollrateSP,rollrate,motor6,motor5;
 
 
-PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
-
+PID rollratePID1(&rollrate,&motor6,&rollrateSP,3,0,0, DIRECT);
+PID rollratePID2(&rollrate,&motor5,&rollrateSP,3,0,0, REVERSE);
 
 
 int throttle;
 
 void arm(){
-  
+
   servo5.writeMicroseconds(2500);
   servo6.writeMicroseconds(2500);
   servo9.writeMicroseconds(2500);
@@ -49,16 +49,17 @@ void arm(){
   servo6.writeMicroseconds(1000);
   servo9.writeMicroseconds(1000);
   servo3.writeMicroseconds(1000);
-  
-  
+
+
 }
 
 void setup() {
-  
+
   //initialize serial comm through bluetooth 1 0
-  Serial.begin(19200); //38400
-  
-  
+  Serial.begin(38400); //38400
+  Serial.println("USB Connected");
+
+
   //servo init
   //attach dedicate pin to servo
   servo9.attach(M9);
@@ -68,37 +69,38 @@ void setup() {
   arm();
   ///////////////////////////////
 
-  rollPID.SetMode(AUTOMATIC);
-  
-  
-  
-  rollPID.SetSampleTime(20);
-  rollPID.SetOutputLimits(-100,100);
-  
-  rollSP=0;
-  
-  throttle=1100;
-  
+  rollratePID1.SetMode(AUTOMATIC);
+  rollratePID2.SetMode(AUTOMATIC);
+
+
+  rollratePID1.SetSampleTime(16);
+  rollratePID2.SetSampleTime(16);
+
+  rollrateSP=0;
+
+  throttle=1200;
+  rollrate=0;
+  motor5=0;
+  motor6=0;
+
 }
 
 
 void loop() {
-  
+
   //read bluetooth serial buffer
-  
+
   if(Serial.available()>=2){
-    
-    roll=((double)(Serial.read()<<8|Serial.read()))/10;
-    
-    rollPID.Compute();
-    
-    servo6.writeMicroseconds(throttle+rollcomp);
-    servo5.writeMicroseconds(throttle-rollcomp);
-    
-    
-    
-    
+    rollrate=(double)(Serial.read()<<8|Serial.read());
+    rollratePID1.Compute();
+    rollratePID2.Compute();
+
+    servo6.writeMicroseconds(throttle+motor6);
+    servo5.writeMicroseconds(throttle+motor5);
+
   }
-  
+
+
 
 }
+
