@@ -32,8 +32,12 @@ int m3pwm=0;
 
 double rollSP,roll,rollcomp;
 int foo;
+double pitchSP,pitch,pitchcomp;
 
 PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
+
+PID pitchPID(&pitch,&pitchcomp,&pitchSP,2,0.1,0.5,DIRECT);
+
 
 
 SoftwareSerial btSerial(TX_BT,RX_BT);
@@ -74,13 +78,17 @@ void setup() {
   ///////////////////////////////
 
   rollPID.SetMode(AUTOMATIC);
-  
+  pitchPID.SetMode(AUTOMATIC);
   
   
   rollPID.SetSampleTime(20);
+  pitchPID.SetSampleTime(20);
+  
   rollPID.SetOutputLimits(-100,100);
+  pitchPID.SetOutputLimits(-100,100);
   
   rollSP=0;
+  pitchSP=0;
   
   throttle=1100;
   
@@ -91,15 +99,19 @@ void loop() {
   
   //read bluetooth serial buffer
   
-  if(btSerial.available()>=2){
+  if(btSerial.available()>=4){
     
     roll=((double)(btSerial.read()<<8|btSerial.read()))/10;
     
-    rollPID.Compute();
+    pitch=((double)(btSerial.read()<<8|btSerial.read()))/10;
     
-    servo6.writeMicroseconds(throttle+rollcomp);
-    servo5.writeMicroseconds(throttle-rollcomp);
-    Serial.println(rollcomp);
+    rollPID.Compute();
+    pitchPID.Compute();
+    
+    servo6.writeMicroseconds(throttle+pitchcomp);
+    servo5.writeMicroseconds(throttle-pitchcomp);
+    
+    Serial.println(roll);
     
     
     
