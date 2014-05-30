@@ -58,8 +58,8 @@ flightbox::flightbox()
 	rollRateG[2] = 0.2;
 
 	//set PID gain of pitch loop
-	pitchGain[0] = 2;
-	pitchGain[1] = 0.01;
+	pitchGain[0] = 1;
+	pitchGain[1] = 0.1;
 	pitchGain[2] = 0.2;
 
 	pitchRateG[0] = 0.3;
@@ -188,7 +188,7 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	motors[0] = cmdRollRate;
 	motors[2] = 255 - cmdRollRate;
 	motors[1] = cmdPitchRate;
-	motors[3] = 255 - cmdRollRate;
+	motors[3] = 255 - cmdPitchRate;
 	
 	motorEvent(motors);
 	inclineEvent(rpy);
