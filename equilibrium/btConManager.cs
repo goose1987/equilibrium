@@ -129,7 +129,7 @@ namespace BluetoothConnectionManager
         /// </summary>
         /// <param name="command">The sent command.</param>
         /// <returns>The number of bytes sent</returns>
-        public async Task<uint> SendCommand(float[] value)
+        public async Task<uint> SendCommand(float value)
         {
             uint sentCommandSize = 0;
             if (dataWriter != null)
@@ -138,8 +138,8 @@ namespace BluetoothConnectionManager
                 //dataWriter.WriteByte((byte)commandSize);
                 //dataWriter.WriteByte((byte)64);
                 
-                dataWriter.WriteInt16(Convert.ToInt16(value[0]));
-                dataWriter.WriteInt16(Convert.ToInt16(value[1]));
+                dataWriter.WriteInt16(Convert.ToInt16(value));
+                
                 await dataWriter.StoreAsync();
                 /*
                 if (dataWriter.UnstoredBufferLength > 32)
