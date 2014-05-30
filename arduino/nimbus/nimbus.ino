@@ -34,11 +34,11 @@ double pitchSP,pitch,pitchcomp;
 
 double motor5,motor6;
 
-PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
+//PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
 
-PID pitchPID(&pitch,&motor5,&pitchSP,0.6,1.5,0.1,REVERSE);
+//PID pitchPID(&pitch,&motor5,&pitchSP,0.5,0.1,0.1,REVERSE);
 
-PID pitchPID2(&pitch,&motor6,&pitchSP,0.6,1.5,0.1,DIRECT);
+//PID pitchPID2(&pitch,&motor6,&pitchSP,0.5,0.1,0.1,DIRECT);
 
 int throttle;
 
@@ -72,14 +72,15 @@ void setup() {
   servo3.attach(M3);
   arm();
   ///////////////////////////////
-
+  /*
   rollPID.SetMode(AUTOMATIC);
   pitchPID.SetMode(AUTOMATIC);
   pitchPID2.SetMode(AUTOMATIC);
   
-  rollPID.SetSampleTime(20);
-  pitchPID.SetSampleTime(20);
-  pitchPID2.SetSampleTime(20);
+  rollPID.SetSampleTime(10);
+  pitchPID.SetSampleTime(10);
+  pitchPID2.SetSampleTime(10);
+  */
   
   
   rollSP=0;
@@ -93,30 +94,27 @@ void setup() {
 void loop() {
   
   //read bluetooth serial buffer
+  //pitchPID.Compute();
+  //pitchPID2.Compute();
+  servo6.writeMicroseconds(1200);
+  servo5.writeMicroseconds(1200);
+  Serial.println(100);
+  /*
+  if(Serial.available()>=2){
+    
+    //roll=((double)(Serial.read()<<8|Serial.read()))/10;
+    pitch=((double)(Serial.read()<<8|Serial.read()));
+    
   
-  if(Serial.available()>=4){
-    
-    roll=((double)(Serial.read()<<8|Serial.read()))/10;
-    pitch=((double)(Serial.read()<<8|Serial.read()))/10;
-    
-    if(roll>100||roll<-100){
-      
-       Serial.flush(); 
-    }else{
       
       
       
       //rollPID.Compute();
-      pitchPID.Compute();
-      pitchPID2.Compute();
-      
-      servo6.writeMicroseconds(throttle+motor6);
-      servo5.writeMicroseconds(throttle+motor5);
-    }
-    
-    
+      //pitchPID.Compute();
+      //pitchPID2.Compute();
+
     
   }
-  
+  */
 
 }

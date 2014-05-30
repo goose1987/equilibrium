@@ -34,9 +34,9 @@ double rollSP,roll,rollcomp;
 int foo;
 double pitchSP,pitch,pitchcomp;
 
-PID rollPID(&roll,&rollcomp,&rollSP,2,0.1,0.5, DIRECT);
+PID rollPID(&roll,&rollcomp,&rollSP,5,0.1,0.5, DIRECT);
 
-PID pitchPID(&pitch,&pitchcomp,&pitchSP,2,0.1,0.5,DIRECT);
+PID pitchPID(&pitch,&pitchcomp,&pitchSP,5,0.1,0.5,DIRECT);
 
 
 
@@ -99,11 +99,11 @@ void loop() {
   
   //read bluetooth serial buffer
   
-  if(btSerial.available()>=4){
+  if(btSerial.available()>=2){
     
-    roll=((double)(btSerial.read()<<8|btSerial.read()))/10;
+    //roll=((double)(btSerial.read()<<8|btSerial.read()))/10;
     
-    pitch=((double)(btSerial.read()<<8|btSerial.read()))/10;
+    pitch=((double)(btSerial.read()<<8|btSerial.read()))/100;
     
     rollPID.Compute();
     pitchPID.Compute();
@@ -111,7 +111,7 @@ void loop() {
     servo6.writeMicroseconds(throttle+pitchcomp);
     servo5.writeMicroseconds(throttle-pitchcomp);
     
-    Serial.println(roll);
+    Serial.println(pitchcomp);
     
     
     
