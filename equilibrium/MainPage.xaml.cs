@@ -99,11 +99,11 @@ namespace equilibrium
 
         }
 
-        async void mflightbox_motorEvent(int[] data)
+        void mflightbox_motorEvent(int[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
-            await mConManager.SendCommand(data);
+            mConManager.SendCommand(data);
            
             Dispatcher.BeginInvoke(() =>
             {
@@ -119,10 +119,7 @@ namespace equilibrium
             
 
             
-            
-            //updateMotorDrive(data[1]);
-            //updateMotorDrive(data[2]);
-            //updateMotorDrive(data[3]);
+           
         }
 
         void mflightbox_accelEvent(float[] __param0)

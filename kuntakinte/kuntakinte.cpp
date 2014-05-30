@@ -149,22 +149,49 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	//yaw goes from 0 to 360 NEED TO ACCOUNT FOR THIS //////////////////////
 	
 	
-	float rollEprev = 0-rpy[ROLL];
-	float pitchEprev = 0-rpy[PITCH];
+	
 
-	rpy[ROLL] = 0-args->Reading->RollDegrees;
-	rpy[PITCH] = 0-args->Reading->PitchDegrees;
-	rpy[YAW] = 0-args->Reading->YawDegrees;
-
-	rollEint += (rollEprev + rpy[ROLL]) / 2 * tickincline;
-	pitchEint += (pitchEprev + rpy[PITCH]) / 2 * tickincline;
-
-
-	cmdRollRate = rollGain[0] * rpy[ROLL] + rollGain[1] * rollEint + rollGain[2] * (-omega[ROLL]);
-	cmdPitchRate = pitchGain[0] * rpy[PITCH] + pitchGain[1] * pitchEint + pitchGain[2] * (-omega[PITCH]);
+	rpy[ROLL] = args->Reading->RollDegrees;
+	rpy[PITCH] = args->Reading->PitchDegrees;
+	rpy[YAW] = args->Reading->YawDegrees;
 
 	
-	//inclineEvent(rpy);
+	
+	
+	rollE = rpy[ROLL];
+	pitchE = rpy[PITCH];
+
+	rollEint += rollE*tickgyro;
+	pitchEint += pitchE*tickgyro;
+
+
+
+	cmdRollRate = 128+rollGain[0] * rpy[ROLL] + rollGain[1] * rollEint + rollGain[2] * (-omega[ROLL]);
+	cmdPitchRate = 128+pitchGain[0] * rpy[PITCH] + pitchGain[1] * pitchEint + pitchGain[2] * (-omega[PITCH]);
+
+	if (cmdRollRate < 0){
+		cmdRollRate = 0;
+	}
+
+	if (cmdRollRate>255){
+		cmdRollRate = 255;
+	}
+
+	if (cmdPitchRate < 0){
+		cmdPitchRate = 0;
+	}
+
+	if (cmdRollRate>255){
+		cmdPitchRate = 255;
+	}
+
+	motors[0] = cmdRollRate;
+	motors[2] = 255 - cmdRollRate;
+	motors[1] = cmdPitchRate;
+	motors[3] = 255 - cmdRollRate;
+	
+	motorEvent(motors);
+	inclineEvent(rpy);
 }
 
 void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs ^args){
@@ -175,6 +202,9 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	omega[PITCH] = args->Reading->AngularVelocityX;
 	omega[YAW] = args->Reading->AngularVelocityZ;
 
+	/*
+	
+	
 	float rollRateEprev = rollRateE;
 	float pitchRateEprev = pitchRateE;
 
@@ -207,7 +237,7 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	}
 
 	motorEvent(motors);
-	
+	*/
 }
 
 
@@ -217,5 +247,5 @@ void flightbox::OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadin
 }
 
 void flightbox::throttle(float incr){
-	offset = 1000 + incr;
+	//offset = 1000 + incr;
 }
