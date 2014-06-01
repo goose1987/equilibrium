@@ -152,18 +152,19 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 	rpy[PITCH] = args->Reading->PitchDegrees*10;
 	rpy[YAW] = args->Reading->YawDegrees*10;
 
-	inclineEvent(rpy);
+	//inclineEvent(rpy);
 }
 
 void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs ^args){
 	
 
 
-	omega[ROLL] = args->Reading->AngularVelocityY;
-	omega[PITCH] = args->Reading->AngularVelocityX;
+	omega[ROLL] = args->Reading->AngularVelocityY*10;
+	omega[PITCH] = args->Reading->AngularVelocityX*10;
 	omega[YAW] = args->Reading->AngularVelocityZ;
 	
 	//motorEvent(omega);
+	inclineEvent(omega);
 	
 }
 
