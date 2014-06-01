@@ -140,7 +140,7 @@ namespace BluetoothConnectionManager
                 
                 dataWriter.WriteInt16(Convert.ToInt16(value));
                 
-                await dataWriter.StoreAsync();
+                dataWriter.StoreAsync();
                 /*
                 if (dataWriter.UnstoredBufferLength > 32)
                 {

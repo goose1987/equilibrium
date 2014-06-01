@@ -93,7 +93,7 @@ namespace equilibrium
             //mflightbox.motorEvent += mflightbox_motorEvent;
 
             motion = new Motion();
-            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(10);
+            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(5);
             motion.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<MotionReading>>(motion_CurrentValueChanged);
 
             mConManager.Initialize();
@@ -101,7 +101,7 @@ namespace equilibrium
             motion.Start();
 
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Interval = TimeSpan.FromSeconds(20);
             timer.Tick += new EventHandler(timer_Tick);
             //timer.Start();
             mthrottle = 0;
@@ -111,17 +111,23 @@ namespace equilibrium
         void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
         {
             //throw new NotImplementedException();
-            mConManager.SendCommand(e.SensorReading.Attitude.Pitch*100);
-            
-            Dispatcher.BeginInvoke(() =>
+            if (motion.IsDataValid)
             {
+                Dispatcher.BeginInvoke(async () =>
+                {
+
+                    await mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
+                    rollTextBlock.Text = e.SensorReading.DeviceRotationRate.Y.ToString("f2");
+                    pitchTextBlock.Text = (e.SensorReading.Attitude.Pitch).ToString("f1");
 
 
-                rollTextBlock.Text = e.SensorReading.Attitude.Roll.ToString("f2");
-                pitchTextBlock.Text = (e.SensorReading.Attitude.Pitch * 100).ToString("f1");
-                
+                });
 
-            });
+
+
+            }
+            
+            
             
         }
 
