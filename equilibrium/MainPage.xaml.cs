@@ -94,7 +94,7 @@ namespace equilibrium
             
             //set up filter object
             filterDesigner = new FilterDesign();
-            mImpulseResponse = filterDesigner.FIRDesignWindowed((float)0.0, (float)0.01,WindowType.HAMMING);
+            mImpulseResponse = filterDesigner.FIRDesignWindowed((float)0.0, (float)0.5,WindowType.HAMMING);
             //mflightbox = new flightbox(); // initialize a new flightbox
             myfilter = new Filter(mImpulseResponse);
 
@@ -130,7 +130,7 @@ namespace equilibrium
                     //await mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
                     //rollTextBlock.Text = foo.ToString("f4");
                     pitchTextBlock.Text = (e.SensorReading.Attitude.Pitch).ToString("f1");
-                    rollTextBlock.Text = myfilter.filter(e.SensorReading.DeviceRotationRate.X).ToString();
+                    rollTextBlock.Text = myfilter.filter(e.SensorReading.DeviceRotationRate.X).ToString("f3");
 
                 });
 

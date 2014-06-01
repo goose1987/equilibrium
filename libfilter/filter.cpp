@@ -7,7 +7,12 @@ using namespace libfilter;
 Filter::Filter( const Platform::Array<float>^ impulseResponse ) {
 	// Initialize everything here
 	N = impulseResponse->Length;
-	this->impulseResponse = impulseResponse->Data;
+	this->impulseResponse = new float[this->N];
+
+
+
+	//float * impulseResponseData = impulseResponse->Data;
+	memcpy(this->impulseResponse, impulseResponse->Data, N*sizeof(float));
 
 	prevData = new float[N];
 	for (int i = 0; i < N; i++){
@@ -24,14 +29,14 @@ float Filter::filter( float data ) {
 	// Return the output sample
 	result=0;
 
-	for (idx = N; idx >0; idx--){
-		prevData[idx] = prevData[idx - 1];
+	for (idx = N-1; idx >0; idx--){
+		this->prevData[idx] = prevData[idx - 1];
 	}
 
-	prevData[0] = data;
+	this->prevData[0] = data;
 
 	for (idx = 0; idx < N; idx++){
-		result += prevData[idx] * this->impulseResponse[idx];
+		result += this->prevData[idx] * this->impulseResponse[idx];
 	}
 
 	
@@ -45,7 +50,7 @@ Platform::Array<float>^ Filter::filter( const Platform::Array<float>^ data ) {
 	//output length of convolve sequence N+M-1
 	
 	Platform::Array<float>^ output = ref new Platform::Array<float>(N + data->Length - 1);	
-	
+	/*
 	
 	zeropaddedh = new float[N + data->Length - 1];
 	zeropaddedd = new float[N + data->Length - 1];
@@ -65,6 +70,7 @@ Platform::Array<float>^ Filter::filter( const Platform::Array<float>^ data ) {
 	
 	delete zeropaddedd;
 	delete zeropaddedh;
-	
+	*/
+
 	return output;
 }

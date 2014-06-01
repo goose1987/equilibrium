@@ -56,3 +56,5 @@ C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibri
 C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\XapCacheFile.xml
 C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libfilter.winmd
 C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libfilter.pdb
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libfilter.winmd
+C:\Users\phamh3\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\libfilter.pdb
