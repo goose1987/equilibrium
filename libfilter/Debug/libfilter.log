@@ -1,0 +1,23 @@
+﻿Build started 5/7/2014 6:54:15 PM.
+     1>Project "C:\Users\hoang\Documents\GitHub\Homework4\libfilter\libfilter.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /IC:\Users\hoang\Documents\GitHub\Homework4\libfilter\ /I"Generated Files\\" /IDebug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _WINRT_DLL /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt filter.cpp filterdesign.cpp
+         filter.cpp
+         filterdesign.cpp
+     1>c:\users\hoang\documents\github\homework4\libfilter\filter.cpp(36): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hoang\documents\github\homework4\libfilter\filter.cpp(38): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hoang\documents\github\homework4\libfilter\filter.h(22): warning C4454: 'libfilter::Filter::filter' is overloaded by more than the number of input parameters without having [DefaultOverload] specified. Picking 'Platform::Array<__TArg> ^libfilter::Filter::filter(const Platform::Array<__TArg> ^)' as the default overload
+                 with
+                 [
+                     __TArg=float
+                 ] (filter.cpp)
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hoang\Documents\GitHub\Homework4\Debug\libfilter\libfilter.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\hoang\Documents\GitHub\Homework4\Debug\libfilter\libfilter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"C:\Users\hoang\Documents\GitHub\Homework4\Debug\libfilter\libfilter.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /DLL Debug\filter.obj
+         Debug\filterdesign.obj
+            Creating library C:\Users\hoang\Documents\GitHub\Homework4\Debug\libfilter\libfilter.lib and object C:\Users\hoang\Documents\GitHub\Homework4\Debug\libfilter\libfilter.exp
+         libfilter.vcxproj -> C:\Users\hoang\Documents\GitHub\Homework4\Debug\libfilter\libfilter.dll
+     1>Done Building Project "C:\Users\hoang\Documents\GitHub\Homework4\libfilter\libfilter.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.70

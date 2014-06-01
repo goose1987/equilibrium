@@ -87,6 +87,9 @@ namespace kuntakinte
 		//integral of angular velocity
 		float omegaint[3];
 
+
+		float runningave[3];
+
 		//Threads 
 		IAsyncAction ^ threadHandle;
 		

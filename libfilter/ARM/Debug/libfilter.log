@@ -1,0 +1,12 @@
+﻿Build started 6/1/2014 1:48:59 PM.
+     1>Project "C:\Users\hoang\Documents\GitHub\equilibrium\libfilter\libfilter.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libfilter\libfilter.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libfilter\libfilter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libfilter\libfilter.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\filter.obj
+         ARM\Debug\filterdesign.obj
+            Creating library C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libfilter\libfilter.lib and object C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libfilter\libfilter.exp
+         libfilter.vcxproj -> C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libfilter\libfilter.dll
+     1>Done Building Project "C:\Users\hoang\Documents\GitHub\equilibrium\libfilter\libfilter.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.74

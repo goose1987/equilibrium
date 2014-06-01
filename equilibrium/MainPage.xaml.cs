@@ -34,6 +34,7 @@ using kuntakinte;
 using TextureGraph;
 using redbox;
 using libvideo;
+using libfilter;
 using Windows.Phone.Media.Capture;
 using System.Windows.Resources;
 using System.Windows.Media.Imaging;
@@ -72,6 +73,11 @@ namespace equilibrium
         DispatcherTimer timer;
 
         Motion motion;
+        FilterDesign filterDesigner = null;
+        Filter myfilter = null;
+
+        float[] gyroreading;
+        float[] mImpulseResponse;
 
         //throttle
         float mthrottle;
@@ -84,24 +90,29 @@ namespace equilibrium
             //new bluetooth manager
             mConManager = new btConManager();
 
+            gyroreading = new float[5];
             
+            //set up filter object
+            filterDesigner = new FilterDesign();
+            mImpulseResponse = filterDesigner.FIRDesignWindowed((float)0.0, (float)0.01,WindowType.HAMMING);
             //mflightbox = new flightbox(); // initialize a new flightbox
-
+            myfilter = new Filter(mImpulseResponse);
 
             //mflightbox.inclineEvent += fb_inclineEvent;
 
             //mflightbox.motorEvent += mflightbox_motorEvent;
-
+            
             motion = new Motion();
             motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(5);
             motion.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<MotionReading>>(motion_CurrentValueChanged);
+            
 
             mConManager.Initialize();
 
             motion.Start();
 
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(20);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += new EventHandler(timer_Tick);
             //timer.Start();
             mthrottle = 0;
@@ -111,21 +122,21 @@ namespace equilibrium
         void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
         {
             //throw new NotImplementedException();
-            if (motion.IsDataValid)
-            {
-                Dispatcher.BeginInvoke(async () =>
+            //float foo=myfilter.filter(e.SensorReading.DeviceRotationRate.X);
+            //mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
+                Dispatcher.BeginInvoke(() =>
                 {
 
-                    await mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
-                    rollTextBlock.Text = e.SensorReading.DeviceRotationRate.Y.ToString("f2");
+                    //await mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
+                    //rollTextBlock.Text = foo.ToString("f4");
                     pitchTextBlock.Text = (e.SensorReading.Attitude.Pitch).ToString("f1");
-
+                    rollTextBlock.Text = myfilter.filter(e.SensorReading.DeviceRotationRate.X).ToString();
 
                 });
 
 
 
-            }
+            
             
             
             
@@ -206,10 +217,7 @@ namespace equilibrium
         void fb_accelEvent(float[] data)
         {
             //updateMotorDrive(data);
-            Dispatcher.BeginInvoke(() =>
-            {
-                
-            });
+            
 
         }
 
@@ -219,21 +227,14 @@ namespace equilibrium
             //roll = Convert.ToInt16(data[0]);
             //pitch = Convert.ToInt16(data[1]);
 
-            
-            
+
+
 
             Dispatcher.BeginInvoke(() =>
             {
-                
-                
-                rollTextBlock.Text = (data[0]/10).ToString("f1");
-                pitchTextBlock.Text = (data[1]/10).ToString("f1");
-                yawTextBlock.Text = (data[2]/10).ToString("f1");
-                
-            });
+                rollTextBlock.Text = data[0].ToString("f4");
 
-            //updateMotorDrive(roll);
-            //updateMotorDrive(yaw);
+            });
             
         }
 

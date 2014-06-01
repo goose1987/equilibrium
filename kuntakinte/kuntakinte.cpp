@@ -92,6 +92,10 @@ flightbox::flightbox()
 	pitchRateEint = 0;
 
 	fault = 0;
+
+	runningave[0] = 0;
+	runningave[1] = 0;
+	runningave[2] = 0;
 }
 
 
@@ -158,12 +162,19 @@ void flightbox::OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadin
 void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs ^args){
 	
 
-
+	/*
 	omega[ROLL] = args->Reading->AngularVelocityY*10;
 	omega[PITCH] = args->Reading->AngularVelocityX*10;
 	omega[YAW] = args->Reading->AngularVelocityZ;
-	
+	*/
+
+	runningave[0] = runningave[1];
+	runningave[1] = runningave[2];
+	runningave[2] = args->Reading->AngularVelocityX;
 	//motorEvent(omega);
+	//omega[ROLL] = args->Reading->AngularVelocityX;
+	omega[0] = (runningave[0] + runningave[1] + runningave[2])*0.33;
+	//omega[0] = runningave[2];
 	inclineEvent(omega);
 	
 }

@@ -43,6 +43,11 @@
         <ActivatableClass ActivatableClassId="kuntakinte.flightbox" ThreadingModel="both" />
       </InProcessServer>
       <InProcessServer>
+        <Path>libfilter.dll</Path>
+        <ActivatableClass ActivatableClassId="libfilter.Filter" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="libfilter.FilterDesign" ThreadingModel="both" />
+      </InProcessServer>
+      <InProcessServer>
         <Path>libvideo.dll</Path>
         <ActivatableClass ActivatableClassId="libvideo.Camera" ThreadingModel="both" />
       </InProcessServer>
