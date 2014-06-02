@@ -53,9 +53,9 @@ namespace equilibrium
         flightbox mflightbox;
         btConManager mConManager;
 
-        short roll;
-        short pitch;
-        short yaw;
+        float roll;
+        float pitch=0;
+        float yaw;
 
         short rollrate;
         short pitchrate;
@@ -76,7 +76,7 @@ namespace equilibrium
         FilterDesign filterDesigner = null;
         Filter myfilter = null;
 
-        float[] gyroreading;
+        
         float[] mImpulseResponse;
 
         //throttle
@@ -90,11 +90,11 @@ namespace equilibrium
             //new bluetooth manager
             mConManager = new btConManager();
 
-            gyroreading = new float[5];
+            
             
             //set up filter object
             filterDesigner = new FilterDesign();
-            mImpulseResponse = filterDesigner.FIRDesignWindowed((float)0.0, (float)0.5,WindowType.HAMMING);
+            mImpulseResponse = filterDesigner.FIRDesignWindowed((float)0.0, (float)0.6,WindowType.HAMMING);
             //mflightbox = new flightbox(); // initialize a new flightbox
             myfilter = new Filter(mImpulseResponse);
 
@@ -103,7 +103,7 @@ namespace equilibrium
             //mflightbox.motorEvent += mflightbox_motorEvent;
             
             motion = new Motion();
-            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(5);
+            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(10);
             motion.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<MotionReading>>(motion_CurrentValueChanged);
             
 
@@ -122,20 +122,22 @@ namespace equilibrium
         void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
         {
             //throw new NotImplementedException();
-            //float foo=myfilter.filter(e.SensorReading.DeviceRotationRate.X);
-            //mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
+            
+            
+            
+            mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 1000);
                 Dispatcher.BeginInvoke(() =>
                 {
 
-                    //await mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 100);
+                    //await mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 1000);
                     //rollTextBlock.Text = foo.ToString("f4");
-                    pitchTextBlock.Text = (e.SensorReading.Attitude.Pitch).ToString("f1");
-                    rollTextBlock.Text = myfilter.filter(e.SensorReading.DeviceRotationRate.X).ToString("f3");
+                    pitchTextBlock.Text = (e.SensorReading.Attitude.Pitch).ToString("f5");
+                    rollTextBlock.Text = e.SensorReading.DeviceRotationRate.X.ToString("f5");
 
                 });
 
 
-
+                
             
             
             

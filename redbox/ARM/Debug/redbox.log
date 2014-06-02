@@ -1,9 +1,9 @@
-﻿Build started 6/1/2014 2:15:36 PM.
-     1>Project "C:\Users\phamh3\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" on node 2 (Build target(s)).
+﻿Build started 6/1/2014 2:41:35 PM.
+     1>Project "C:\Users\hoang\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" on node 3 (Build target(s)).
      1>Link:
-         redbox.vcxproj -> C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.dll
-     1>Done Building Project "C:\Users\phamh3\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" (Build target(s)).
+         redbox.vcxproj -> C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.dll
+     1>Done Building Project "C:\Users\hoang\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.01
+Time Elapsed 00:00:00.46
