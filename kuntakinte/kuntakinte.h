@@ -11,6 +11,9 @@ using namespace Windows::Networking::Proximity;
 //this is what does all the work
 namespace kuntakinte
 {
+
+
+	
 	//callback definitions
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
@@ -65,6 +68,8 @@ namespace kuntakinte
 		float zpos; 
 
 
+		float *attitude;
+
 		//duty cycle output to motor
 		float duty[4];
 
@@ -108,6 +113,9 @@ namespace kuntakinte
 
 
 		float fault;
+
+
+		void* rollPID;
     public:
 
 		//angular velocity array
@@ -127,23 +135,14 @@ namespace kuntakinte
 		event motorCallback^ motorEvent;
 
         flightbox();
-		int calibrate(float roll, float pitch, float yaw);
 
-		//int balance(double roll, double pitch, double yaw);
 
-		int rollPID(float rP,float rI,float rD);
-
-		int pitchPID(float pP,float pI,float pD);
-
-		int yawPID(float yP,float yI,float yD);
 
 		void throttle(float incr);
 
-		void OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadingChangedEventArgs ^args);
-		void OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs^args);
-		void OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args);
-
-		void initBt();
 		
+
+		void compensate(const Platform::Array<float>^ sensors);
+
 	};
 }

@@ -52,6 +52,9 @@ namespace equilibrium
         flightbox mflightbox;
         btConManager mConManager;
 
+
+       
+
         float roll;
         float pitch;
         float yaw;
@@ -66,6 +69,7 @@ namespace equilibrium
         //timer
         DispatcherTimer timer;
 
+        Motion motion;
 
         //throttle
         float mthrottle;
@@ -84,9 +88,14 @@ namespace equilibrium
 
             mflightbox.inclineEvent += fb_inclineEvent;
 
-            mflightbox.motorEvent += mflightbox_motorEvent;
+            //mflightbox.motorEvent += mflightbox_motorEvent;
+            motion = new Motion();
+            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(5);
+            motion.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<MotionReading>>(motion_CurrentValueChanged);
 
-           
+
+            motion.Start();
+
             mConManager.Initialize();
 
 
@@ -97,6 +106,18 @@ namespace equilibrium
             //timer.Start();
             mthrottle = 0;
 
+            
+
+        }
+
+        void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
+        {
+
+            float[] attitude = new float[3];
+            attitude[0]=e.SensorReading.Attitude.Roll;
+            attitude[1]=e.SensorReading.Attitude.Pitch;
+            
+            mflightbox.compensate(attitude);
         }
 
         void mflightbox_motorEvent(int[] data)
@@ -195,9 +216,9 @@ namespace equilibrium
                 roll = data[0];
                 pitch = data[1];
                 yaw = data[2];
-                rollTextBlock.Text = roll.ToString("f2");
-                pitchTextBlock.Text = pitch.ToString("f2");
-                yawTextBlock.Text = yaw.ToString("f2");
+                rollTextBlock.Text = roll.ToString("f5");
+                pitchTextBlock.Text = pitch.ToString("f5");
+                yawTextBlock.Text = yaw.ToString("f5");
 
                 
 
@@ -259,11 +280,7 @@ namespace equilibrium
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (float.TryParse(pGain.Text, out myPgain)&&float.TryParse(iGain.Text,out myIgain)&&float.TryParse(dGain.Text,out myDgain))
-            {
-                mflightbox.rollPID(myPgain,myIgain,myDgain);
-                mflightbox.pitchPID(myPgain, myIgain, myDgain);
-            }
+            
         }
 
     }
