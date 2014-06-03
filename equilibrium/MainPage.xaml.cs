@@ -125,7 +125,7 @@ namespace equilibrium
             
             
             
-            mConManager.SendCommand(e.SensorReading.Attitude.Pitch * 1000);
+            mConManager.SendCommand(e.SensorReading.Attitude.Roll*1000,e.SensorReading.Attitude.Pitch * 1000);
                 Dispatcher.BeginInvoke(() =>
                 {
 
