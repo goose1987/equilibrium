@@ -51,15 +51,15 @@ void setup() {
   
   //initialize serial comm through bluetooth 1 0
   Serial.begin(19200); //38400
-  Serial.println("USB Connected");
+
 
   
   //servo init
   //attach dedicate pin to servo
-  servo9.attach(M9,1000,2000);
-  servo6.attach(M6,1000,2000);
-  servo5.attach(M5,1000,2000);
-  servo3.attach(M3,1000,2000);
+  servo9.attach(M9);
+  servo6.attach(M6);
+  servo5.attach(M5);
+  servo3.attach(M3);
   ///////////////////////////////
   arm();
   
@@ -70,12 +70,12 @@ void loop() {
   
   //read bluetooth serial buffer
   
-  if(Serial.available()>=4){
+  if(Serial.available()>=8){
     
-    servo3.writeMicroseconds(Serial.read()); 
-    servo6.writeMicroseconds(Serial.read());
-    servo9.writeMicroseconds(Serial.read());    
-    servo5.writeMicroseconds(Serial.read());
+    servo3.writeMicroseconds(Serial.read()<<8|Serial.read()); 
+    servo6.writeMicroseconds(Serial.read()<<8|Serial.read());
+    servo9.writeMicroseconds(Serial.read()<<8|Serial.read());    
+    servo5.writeMicroseconds(Serial.read()<<8|Serial.read());
   
   
   }

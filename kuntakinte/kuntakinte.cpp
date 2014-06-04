@@ -66,6 +66,11 @@ flightbox::flightbox()
 	m3pid->SetMode(AUTOMATIC);
 	m5pid->SetMode(AUTOMATIC);
 	m6pid->SetMode(AUTOMATIC);
+
+	m9pid->SetSampleTime(5);
+	m3pid->SetSampleTime(5);
+	m5pid->SetSampleTime(5);
+	m6pid->SetSampleTime(5);
 }
 
 
