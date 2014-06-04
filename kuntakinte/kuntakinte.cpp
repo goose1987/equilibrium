@@ -1,7 +1,7 @@
 ﻿// kuntakinte.cpp
 #include "pch.h"
 #include "kuntakinte.h"
-#include "PID.h"
+
 #include <string.h>
 
 using namespace kuntakinte;
@@ -28,52 +28,7 @@ using namespace Windows::UI::Xaml::Media;
 
 flightbox::flightbox()
 {
-	/*
-	//get inclinometer
-	inclinometer = Inclinometer::GetDefault();	
-	inclinometer->ReportInterval = inclinometer->MinimumReportInterval;	
-	inclinometer->ReadingChanged::add(ref new TypedEventHandler<Inclinometer ^, InclinometerReadingChangedEventArgs ^>(this, &flightbox::OnInclineReadingChanged));
-
-	//get gyroscope
-	gyrometer = Gyrometer::GetDefault();
-	gyrometer->ReportInterval = gyrometer->MinimumReportInterval;
-	//gyrometer->ReportInterval = 4;
 	
-	gyrometer->ReadingChanged::add(ref new TypedEventHandler<Gyrometer^, GyrometerReadingChangedEventArgs^>(this, &flightbox::OnGyroReadingChanged));	
-
-	//get accelerometer
-	accelerometer = Accelerometer::GetDefault();
-	accelerometer->ReportInterval = accelerometer->MinimumReportInterval;
-	accelerometer->ReadingChanged::add(ref new TypedEventHandler<Accelerometer ^, AccelerometerReadingChangedEventArgs ^>(this, &flightbox::OnAccelReadingChanged));
-	
-	tickgyro = gyrometer->ReportInterval / 1000.0;
-	tickincline = inclinometer->ReportInterval / 1000.0;
-	tickaccel = accelerometer->ReportInterval / 1000.0;
-	//set PID gain of roll loop
-	*/
-	rollGain[0] = 2;
-	rollGain[1] = 0.01;
-	rollGain[2] = 0.2; 
-
-	rollRateG[0] = 0.3;
-	rollRateG[1] = 0.001;
-	rollRateG[2] = 0.2;
-
-	//set PID gain of pitch loop
-	pitchGain[0] = 1;
-	pitchGain[1] = 0.1;
-	pitchGain[2] = 0.2;
-
-	pitchRateG[0] = 0.3;
-	pitchRateG[1] = 0.001;
-	pitchRateG[2] = 0.2;
-
-	//set PID gain of yaw loop
-	yawGain[0] = 1;
-	yawGain[1] = 1;
-	yawGain[2] = 1;
-	
-
 	//init omega array
 	omega = ref new Platform::Array<float>(3);
 	//initialize rpy array
@@ -81,9 +36,11 @@ flightbox::flightbox()
 	//init position array
 	position = ref new Platform::Array<float>(3);
 	//init motors array
-	motors = ref new Platform::Array<int>(4);
+	motors = ref new Platform::Array<float>(4);
 
-	offset = 1000;
+
+	mthrottle = 1000;
+
 	cmdRollRate = 0;
 	cmdPitchRate = 0;
 	
@@ -97,19 +54,39 @@ flightbox::flightbox()
 
 	attitude = new float[3];
 
-	rollPID = new PID(&fault, &fault, &fault, fault, fault, fault, 1);
+	mroll = 0;
+
+	m9pid = new PID(&mroll, &m9, &rollsetpoint, (float)60, (float)5 ,(float)40, REVERSE);
+	m3pid = new PID(&mroll, &m3, &rollsetpoint, (float)60, (float)5, (float)40, DIRECT);
+
+	m5pid = new PID(&mpitch, &m5, &pitchsetpoint, (float)60, (float)5, (float)40, REVERSE);
+	m6pid = new PID(&mpitch, &m6, &pitchsetpoint, (float)60, (float)5, (float)40, DIRECT);
+
+	m9pid->SetMode(AUTOMATIC);
+	m3pid->SetMode(AUTOMATIC);
+	m5pid->SetMode(AUTOMATIC);
+	m6pid->SetMode(AUTOMATIC);
 }
 
 
 
 
-void flightbox::compensate(const Platform::Array<float>^ sensors){
+Platform::Array<float>^ flightbox::compensate(const Platform::Array<float>^ sensors){
 	memcpy(attitude, sensors->Data, 3 * sizeof(float));
-	rpy[ROLL] = attitude[ROLL];
-	rpy[PITCH] = attitude[PITCH];
-	rpy[YAW] = attitude[YAW];
+	mroll = attitude[ROLL];
+	mpitch = attitude[PITCH];
+	
+	m9pid->Compute();
+	m3pid->Compute();
+	m5pid->Compute();
+	m6pid->Compute();
+	
+	motors[0] = mthrottle + m9;
+	motors[1] = mthrottle + m3;
+	motors[2] = mthrottle + m5;
+	motors[3] = mthrottle + m6;
 
-	inclineEvent(rpy);
+	return motors;
 
 }
 

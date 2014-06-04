@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include "PID.h"
 
 using namespace Windows::Foundation;
 using namespace Windows::Devices::Sensors;
@@ -18,7 +18,7 @@ namespace kuntakinte
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
 	public delegate void accelCallback(const Platform::Array<float>^ data);
-	public delegate void motorCallback(const Platform::Array<int>^ data);
+	public delegate void motorCallback(const Platform::Array<float>^ data);
 
     public ref class flightbox sealed
     {
@@ -95,7 +95,7 @@ namespace kuntakinte
 		//Threads 
 		IAsyncAction ^ threadHandle;
 		
-		float offset;
+		
 		float cmdRollRate;
 		float cmdPitchRate;
 
@@ -114,8 +114,23 @@ namespace kuntakinte
 
 		float fault;
 
+		float rollsetpoint;
+		float pitchsetpoint;
 
-		void* rollPID;
+
+		float mthrottle;
+
+		float m3;
+		float m5;
+		float m6;
+		float m9;
+
+		PID* m3pid;
+		PID* m5pid;
+		PID* m6pid;
+		PID* m9pid;
+		
+		
     public:
 
 		//angular velocity array
@@ -126,7 +141,7 @@ namespace kuntakinte
 		//position array
 		property Platform::Array<float>^ position;
 		//motor array
-		property Platform::Array<int>^ motors;
+		property Platform::Array<float>^ motors;
 
 		//event interface
 		event inclineCallback^ inclineEvent;
@@ -142,7 +157,10 @@ namespace kuntakinte
 
 		
 
-		void compensate(const Platform::Array<float>^ sensors);
+		Platform::Array<float>^ compensate(const Platform::Array<float>^ sensors);
+
+		
+
 
 	};
 }

@@ -59,9 +59,7 @@ namespace equilibrium
         float pitch;
         float yaw;
 
-        float myPgain = 0;
-        float myIgain = 0;
-        float myDgain = 0;
+        float[] motors;
 
         //declare speechrecognizerUI 
         SpeechRecognizerUI recoWithUI;
@@ -78,6 +76,9 @@ namespace equilibrium
         public MainPage()
         {
             InitializeComponent();
+
+
+            motors = new float[4];
 
             //new bluetooth manager
             mConManager = new btConManager();
@@ -117,14 +118,28 @@ namespace equilibrium
             attitude[0]=e.SensorReading.Attitude.Roll;
             attitude[1]=e.SensorReading.Attitude.Pitch;
             
-            mflightbox.compensate(attitude);
+            motors=mflightbox.compensate(attitude);
+            Dispatcher.BeginInvoke(() =>
+            {
+
+                rollTextBlock.Text = attitude[0].ToString("f5");
+                pitchTextBlock.Text = attitude[1].ToString("f5");
+                motor0.Text = motors[0].ToString("f5");
+                motor1.Text = motors[1].ToString("f5");
+                motor2.Text = motors[2].ToString("f5");
+                motor3.Text = motors[3].ToString("f5");
+
+                //updateMotorDrive(data);
+            });
+            
+
         }
 
-        void mflightbox_motorEvent(int[] data)
+        void mflightbox_motorEvent(float[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
-            mConManager.SendCommand(data);
+            
            
             Dispatcher.BeginInvoke(() =>
             {
