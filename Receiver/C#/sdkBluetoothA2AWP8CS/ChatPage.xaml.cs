@@ -189,6 +189,7 @@ namespace sdkBluetoothA2AWP8CS
 
                 // Add to chat
                 //UpdateChatBox(message, true);
+                mflightbox.throttle(message);
                 throttleText.Text = "Throttle: "+message;
                 // Start listening for the next message.
                 ListenForIncomingMessage();
@@ -458,6 +459,8 @@ namespace sdkBluetoothA2AWP8CS
         {
            mflightbox.throttle((float)e.NewValue);
         }
+
+
 
 
     }

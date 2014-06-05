@@ -35,7 +35,7 @@ namespace sdkBluetoothA2AWP8CS
         const uint ERR_BLUETOOTH_OFF = 0x8007048F;      // The Bluetooth radio is off
         const uint ERR_MISSING_CAPS = 0x80070005;       // A capability is missing from your WMAppManifest.xml
         const uint ERR_NOT_ADVERTISING = 0x8000000E;    // You are currently not advertising your presence using PeerFinder.Start()
-       
+        bool connected = false;
 
         // Constructor
         public ChatPage()
@@ -219,36 +219,33 @@ namespace sdkBluetoothA2AWP8CS
         }
 
         DataWriter _dataWriter;
-        private void SendMessage_Tap_1(object sender, GestureEventArgs e)
-        {
-            SendMessage(txtMessage.Text);
-        }
 
-        private async void SendMessage(string message)
+
+        private async void SendMessage(int message)
         {
-            if (message.Trim().Length == 0)
+            /*if (message.Trim().Length == 0)
             {
                 MessageBox.Show(AppResources.Err_NoMessageToSend, AppResources.Err_NoSendTitle, MessageBoxButton.OK);
                 return;
-            }
+            }*/
 
             if (_socket == null)
             {
                 MessageBox.Show(AppResources.Err_NoPeerConnected, AppResources.Err_NoSendTitle, MessageBoxButton.OK);
                 return;
             }
-
+            
             if (_dataWriter == null)
                 _dataWriter = new DataWriter(_socket.OutputStream);
 
             // Each message is sent in two blocks.
             // The first is the size of the message.
             // The second if the message itself.
-            _dataWriter.WriteInt32(message.Length);
+            _dataWriter.WriteInt32(message);
             await _dataWriter.StoreAsync();
 
-            _dataWriter.WriteString(message);
-            await _dataWriter.StoreAsync();
+           // _dataWriter.WriteString(message);
+            //await _dataWriter.StoreAsync();
         }
 
         private void ShowBluetoothControlPanel()
@@ -260,7 +257,18 @@ namespace sdkBluetoothA2AWP8CS
 
         private void throttleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            SendMessage(e.NewValue.ToString("0.00"));
+            if (connected)
+            {
+                SendMessage((int)e.NewValue);
+            }
+            else
+            {
+                connected = true;
+            }
+            Dispatcher.BeginInvoke(() =>
+                {
+                    throttleText.Text = "Throttle: " + e.NewValue.ToString();
+                });
         }
     }
 
