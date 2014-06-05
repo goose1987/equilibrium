@@ -36,7 +36,7 @@ flightbox::flightbox()
 	//init position array
 	position = ref new Platform::Array<float>(3);
 	//init motors array
-	motors = ref new Platform::Array<float>(4);
+	motors = ref new Platform::Array<int>(4);
 
 
 	mthrottle = 1000;
@@ -56,11 +56,11 @@ flightbox::flightbox()
 
 	mroll = 0;
 
-	m9pid = new PID(&mroll, &m9, &rollsetpoint, (float)60, (float)5 ,(float)40, REVERSE);
-	m3pid = new PID(&mroll, &m3, &rollsetpoint, (float)60, (float)5, (float)40, DIRECT);
+	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)60, (float)5 ,(float)40, REVERSE);
+	m3pid = new PID(&attitude[ROLL], &m3, &rollsetpoint, (float)60, (float)5, (float)40, DIRECT);
 
-	m5pid = new PID(&mpitch, &m5, &pitchsetpoint, (float)60, (float)5, (float)40, REVERSE);
-	m6pid = new PID(&mpitch, &m6, &pitchsetpoint, (float)60, (float)5, (float)40, DIRECT);
+	m5pid = new PID(&attitude[PITCH], &m5, &pitchsetpoint, (float)60, (float)5, (float)40, REVERSE);
+	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)60, (float)5, (float)40, DIRECT);
 
 	m9pid->SetMode(AUTOMATIC);
 	m3pid->SetMode(AUTOMATIC);
@@ -76,20 +76,20 @@ flightbox::flightbox()
 
 
 
-Platform::Array<float>^ flightbox::compensate(const Platform::Array<float>^ sensors){
+Platform::Array<int>^ flightbox::compensate(const Platform::Array<float>^ sensors){
 	memcpy(attitude, sensors->Data, 3 * sizeof(float));
-	mroll = attitude[ROLL];
-	mpitch = attitude[PITCH];
+	//mroll = attitude[ROLL];
+	//mpitch = attitude[PITCH];
 	
 	m9pid->Compute();
 	m3pid->Compute();
 	m5pid->Compute();
 	m6pid->Compute();
 	
-	motors[0] = mthrottle + m9;
-	motors[1] = mthrottle + m3;
-	motors[2] = mthrottle + m5;
-	motors[3] = mthrottle + m6;
+	motors[0] = (int)(mthrottle + m9);
+	motors[1] = (int)(mthrottle + m3);
+	motors[2] = (int)(mthrottle + m5);
+	motors[3] = (int)(mthrottle + m6);
 
 	return motors;
 
@@ -97,5 +97,5 @@ Platform::Array<float>^ flightbox::compensate(const Platform::Array<float>^ sens
 
 
 void flightbox::throttle(float incr){
-	//offset = 1000 + incr;
+	mthrottle = incr;
 }

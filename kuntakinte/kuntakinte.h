@@ -141,7 +141,7 @@ namespace kuntakinte
 		//position array
 		property Platform::Array<float>^ position;
 		//motor array
-		property Platform::Array<float>^ motors;
+		property Platform::Array<int>^ motors;
 
 		//event interface
 		event inclineCallback^ inclineEvent;
@@ -157,7 +157,7 @@ namespace kuntakinte
 
 		
 
-		Platform::Array<float>^ compensate(const Platform::Array<float>^ sensors);
+		Platform::Array<int>^ compensate(const Platform::Array<float>^ sensors);
 
 		
 
