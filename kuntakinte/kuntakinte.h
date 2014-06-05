@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include "PID.h"
 
 using namespace Windows::Foundation;
 using namespace Windows::Devices::Sensors;
@@ -11,11 +11,14 @@ using namespace Windows::Networking::Proximity;
 //this is what does all the work
 namespace kuntakinte
 {
+
+
+	
 	//callback definitions
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
 	public delegate void accelCallback(const Platform::Array<float>^ data);
-	public delegate void motorCallback(const Platform::Array<int>^ data);
+	public delegate void motorCallback(const Platform::Array<float>^ data);
 
     public ref class flightbox sealed
     {
@@ -65,6 +68,8 @@ namespace kuntakinte
 		float zpos; 
 
 
+		float *attitude;
+
 		//duty cycle output to motor
 		float duty[4];
 
@@ -90,7 +95,7 @@ namespace kuntakinte
 		//Threads 
 		IAsyncAction ^ threadHandle;
 		
-		float offset;
+		
 		float cmdRollRate;
 		float cmdPitchRate;
 
@@ -108,6 +113,24 @@ namespace kuntakinte
 
 
 		float fault;
+
+		float rollsetpoint;
+		float pitchsetpoint;
+
+
+		float mthrottle;
+
+		float m3;
+		float m5;
+		float m6;
+		float m9;
+
+		PID* m3pid;
+		PID* m5pid;
+		PID* m6pid;
+		PID* m9pid;
+		
+		
     public:
 
 		//angular velocity array
@@ -118,7 +141,7 @@ namespace kuntakinte
 		//position array
 		property Platform::Array<float>^ position;
 		//motor array
-		property Platform::Array<int>^ motors;
+		property Platform::Array<float>^ motors;
 
 		//event interface
 		event inclineCallback^ inclineEvent;
@@ -127,23 +150,17 @@ namespace kuntakinte
 		event motorCallback^ motorEvent;
 
         flightbox();
-		int calibrate(float roll, float pitch, float yaw);
 
-		//int balance(double roll, double pitch, double yaw);
 
-		int rollPID(float rP,float rI,float rD);
-
-		int pitchPID(float pP,float pI,float pD);
-
-		int yawPID(float yP,float yI,float yD);
 
 		void throttle(float incr);
 
-		void OnInclineReadingChanged(Inclinometer ^sender, InclinometerReadingChangedEventArgs ^args);
-		void OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs^args);
-		void OnAccelReadingChanged(Accelerometer ^sender, AccelerometerReadingChangedEventArgs ^args);
-
-		void initBt();
 		
+
+		Platform::Array<float>^ compensate(const Platform::Array<float>^ sensors);
+
+		
+
+
 	};
 }
