@@ -51,11 +51,6 @@ void setup() {
   
   //initialize serial comm through bluetooth 1 0
   Serial.begin(19200); //38400
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 136fabfc131c4e78761ea63485b751d9f303f143
 
   
   //servo init
@@ -66,7 +61,7 @@ void setup() {
   servo3.attach(M3);
   ///////////////////////////////
   arm();
-  
+  delay(4000);
 }
 
 
@@ -75,22 +70,15 @@ void loop() {
   //read bluetooth serial buffer
   
   if(Serial.available()>=8){
+    m9pwm=Serial.read()<<8|Serial.read();
+    m3pwm=Serial.read()<<8|Serial.read();
+    m5pwm=Serial.read()<<8|Serial.read();
+    m6pwm=Serial.read()<<8|Serial.read();
     
-<<<<<<< HEAD
-    Serial.read();
-    servo3.writeMicroseconds(0); 
-    servo5.writeMicroseconds(1100+Serial.read());
-    Serial.read();
-    servo9.writeMicroseconds(0);    
-    servo6.writeMicroseconds(1100+Serial.read());
-=======
-    servo3.writeMicroseconds(Serial.read()<<8|Serial.read()); 
-    servo6.writeMicroseconds(Serial.read()<<8|Serial.read());
-    servo9.writeMicroseconds(Serial.read()<<8|Serial.read());    
-    servo5.writeMicroseconds(Serial.read()<<8|Serial.read());
->>>>>>> 136fabfc131c4e78761ea63485b751d9f303f143
-  
-  
   }
+  servo3.writeMicroseconds(m3pwm); 
+  servo6.writeMicroseconds(m6pwm);
+  servo9.writeMicroseconds(m9pwm);    
+  servo5.writeMicroseconds(m5pwm);
 
 }
