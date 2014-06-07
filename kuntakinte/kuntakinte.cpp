@@ -56,21 +56,21 @@ flightbox::flightbox()
 
 	mroll = 0;
 
-	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)60, (float)5 ,(float)40, REVERSE);
-	m3pid = new PID(&attitude[ROLL], &m3, &rollsetpoint, (float)60, (float)5, (float)40, DIRECT);
+	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)40, (float)5 ,(float)40, REVERSE);
+	m3pid = new PID(&attitude[ROLL], &m3, &rollsetpoint, (float)40, (float)5, (float)40, DIRECT);
 
-	m5pid = new PID(&attitude[PITCH], &m5, &pitchsetpoint, (float)60, (float)5, (float)40, REVERSE);
-	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)60, (float)5, (float)40, DIRECT);
+	m5pid = new PID(&attitude[PITCH], &m5, &pitchsetpoint, (float)40, (float)5, (float)40, REVERSE);
+	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)40, (float)5, (float)40, DIRECT);
 
 	m9pid->SetMode(AUTOMATIC);
 	m3pid->SetMode(AUTOMATIC);
 	m5pid->SetMode(AUTOMATIC);
 	m6pid->SetMode(AUTOMATIC);
 
-	m9pid->SetSampleTime(5);
-	m3pid->SetSampleTime(5);
-	m5pid->SetSampleTime(5);
-	m6pid->SetSampleTime(5);
+	m9pid->SetSampleTime(10);
+	m3pid->SetSampleTime(10);
+	m5pid->SetSampleTime(10);
+	m6pid->SetSampleTime(10);
 }
 
 
