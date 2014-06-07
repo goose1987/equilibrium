@@ -1,19 +1,9 @@
-﻿Build started 6/5/2014 12:00:00 AM.
-     1>Project "C:\Users\hoang\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /IC:\Users\hoang\Documents\GitHub\equilibrium\redbox\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _WINRT_DLL /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"pch.h" /Fp"ARM\Debug\redbox.pch" /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt pch.cpp
-         pch.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /IC:\Users\hoang\Documents\GitHub\equilibrium\redbox\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _WINRT_DLL /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"ARM\Debug\redbox.pch" /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt redbox.cpp
-         redbox.cpp
-     1>redbox.cpp(60): warning C4018: '<' : signed/unsigned mismatch
-     1>redbox.cpp(70): warning C4018: '<' : signed/unsigned mismatch
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\redbox.obj
-         ARM\Debug\pch.obj
-            Creating library C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.lib and object C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.exp
-         redbox.vcxproj -> C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.dll
-     1>Done Building Project "C:\Users\hoang\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" (Build target(s)).
+﻿Build started 6/7/2014 12:29:33 PM.
+     1>Project "C:\Users\phamh3\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         redbox.vcxproj -> C:\Users\phamh3\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.dll
+     1>Done Building Project "C:\Users\phamh3\Documents\GitHub\equilibrium\redbox\redbox.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.93
+Time Elapsed 00:00:00.03

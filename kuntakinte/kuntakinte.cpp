@@ -97,5 +97,5 @@ Platform::Array<int>^ flightbox::compensate(const Platform::Array<float>^ sensor
 
 
 void flightbox::throttle(float incr){
-	mthrottle = incr;
+	mthrottle = 1000+incr;
 }

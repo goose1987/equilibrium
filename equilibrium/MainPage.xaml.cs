@@ -118,8 +118,8 @@ namespace equilibrium
             attitude[0]=e.SensorReading.Attitude.Roll;
             attitude[1]=e.SensorReading.Attitude.Pitch;
             
-            //motors=mflightbox.compensate(attitude);
-            mConManager.SendCommand(mflightbox.compensate(attitude));
+            motors=mflightbox.compensate(attitude);
+            mConManager.SendCommand(motors);
             Dispatcher.BeginInvoke(() =>
             {
 
