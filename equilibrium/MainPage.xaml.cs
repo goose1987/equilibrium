@@ -41,6 +41,9 @@ using System.Windows.Media.Imaging;
 using Windows.Phone.Speech.Recognition;
 using Windows.Phone.Speech.Synthesis;
 using System.Windows.Threading;
+using System.Collections.ObjectModel;
+using Windows.Storage.Streams;
+using System.Threading.Tasks;
 
 
 
@@ -52,7 +55,11 @@ namespace equilibrium
         flightbox mflightbox;
         btConManager mConManager;
 
-
+        ObservableCollection<PeerAppInfo> _peerApps;
+        StreamSocket _socket;
+        string _peerName = string.Empty;
+        bool connected = false;
+        DataReader _dataReader;
        
 
         float roll;
@@ -78,6 +85,8 @@ namespace equilibrium
             InitializeComponent();
 
 
+            
+
             motors = new int[4];
 
             //new bluetooth manager
@@ -88,6 +97,8 @@ namespace equilibrium
 
 
             mflightbox.inclineEvent += fb_inclineEvent;
+
+
 
             //mflightbox.motorEvent += mflightbox_motorEvent;
             motion = new Motion();
@@ -111,6 +122,106 @@ namespace equilibrium
 
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _peerApps = new ObservableCollection<PeerAppInfo>();
+
+            PeerList.ItemsSource = _peerApps;
+            PeerFinder.ConnectionRequested += PeerFinder_ConnectionRequested;
+
+            PeerFinder.DisplayName = "NewReceivers";
+            PeerFinder.Start();
+
+            RefreshPeerAppList();
+
+            base.OnNavigatedTo(e);
+        }
+        private async void RefreshPeerAppList()
+        {
+            try
+            {
+                var peers = await PeerFinder.FindAllPeersAsync();
+
+                _peerApps.Clear();
+                if (peers.Count == 0)
+                {
+                    MessageBox.Show("no peers");
+                }
+                else
+                {
+
+                    foreach (var peer in peers)
+                    {
+                        if (peer.DisplayName == "NewSender")
+                        {
+                            _peerApps.Add(new PeerAppInfo(peer));
+
+                            
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void PeerFinder_ConnectionRequested(object sender, ConnectionRequestedEventArgs args)
+        {
+            try
+            {
+                this.Dispatcher.BeginInvoke(() =>
+                {
+                    MessageBox.Show("bro wat up");
+                    ConnectToPeer(args.PeerInformation);
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
+
+        private async void ConnectToPeer(PeerInformation peer)
+        {
+            try
+            {
+                _socket = await PeerFinder.ConnectAsync(peer);
+
+                if (_dataReader == null)
+                {
+                    _dataReader = new DataReader(_socket.InputStream);
+                }
+
+                PeerFinder.Stop();
+                _peerName = peer.DisplayName;
+
+                connected = true;
+
+                ListenForIncomingMessage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void ListenForIncomingMessage()
+        {
+            mthrottle = await GetMessage();
+            mflightbox.throttle((float)mthrottle);
+            ListenForIncomingMessage();    
+        }
+
+        private async Task<int> GetMessage()
+        {
+            
+            await _dataReader.LoadAsync(2);
+            return _dataReader.ReadInt16();
+        }
         void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
         {
 
@@ -299,5 +410,17 @@ namespace equilibrium
             
         }
 
+    }
+
+    public class PeerAppInfo
+    {
+        internal PeerAppInfo(PeerInformation peerInformation)
+        {
+            this.PeerInfo = peerInformation;
+            this.DisplayName = this.PeerInfo.DisplayName;
+        }
+
+        public string DisplayName { get; private set; }
+        public PeerInformation PeerInfo { get; private set; }
     }
 }

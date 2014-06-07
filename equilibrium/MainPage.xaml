@@ -64,11 +64,6 @@
             <TextBlock x:Name="motor2" HorizontalAlignment="Left" Margin="341,144,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor1" HorizontalAlignment="Left" Margin="341,112,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor3" HorizontalAlignment="Left" Margin="341,176,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-            <Slider x:Name="throttleSlider" HorizontalAlignment="Left" Margin="231,317,-36,0" VerticalAlignment="Top" Width="261" RenderTransformOrigin="0.5,0.5" Height="95" UseLayoutRounding="False" d:LayoutRounding="Auto" ValueChanged="throttleSlider_ValueChanged" Maximum="700">
-                <Slider.RenderTransform>
-                    <CompositeTransform Rotation="-90"/>
-                </Slider.RenderTransform>
-            </Slider>
             <Slider x:Name="timedThrottle" HorizontalAlignment="Left" Margin="-51,321,0,0" VerticalAlignment="Top" Width="259" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Maximum="500" ValueChanged="timedThrottle_ValueChanged">
                 <Slider.RenderTransform>
                     <CompositeTransform Rotation="-90"/>
@@ -81,7 +76,14 @@
             <TextBlock HorizontalAlignment="Left" Margin="163,264,0,0" TextWrapping="Wrap" Text="P" VerticalAlignment="Top" Width="27"/>
             <TextBlock HorizontalAlignment="Left" Margin="163,341,0,0" TextWrapping="Wrap" Text="I" VerticalAlignment="Top" Width="27"/>
             <TextBlock HorizontalAlignment="Left" Margin="163,413,0,0" TextWrapping="Wrap" Text="D" VerticalAlignment="Top" Width="27"/>
-
+            <ListBox Grid.Row="2" Grid.ColumnSpan="2" x:Name="PeerList" Margin="10,10,0,10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}" FontSize="{StaticResource PhoneFontSizeMedium}" Margin="40,0,0,0"/>
+                        
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
