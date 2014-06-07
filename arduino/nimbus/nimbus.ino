@@ -52,6 +52,7 @@ void setup() {
   //initialize serial comm through bluetooth 1 0
   Serial.begin(19200); //38400
 
+
   
   //servo init
   //attach dedicate pin to servo
@@ -74,7 +75,7 @@ void loop() {
     m3pwm=Serial.read()<<8|Serial.read();
     m5pwm=Serial.read()<<8|Serial.read();
     m6pwm=Serial.read()<<8|Serial.read();
-    
+
   }
   servo3.writeMicroseconds(m3pwm); 
   servo6.writeMicroseconds(m6pwm);

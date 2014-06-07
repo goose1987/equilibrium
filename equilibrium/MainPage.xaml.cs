@@ -59,7 +59,7 @@ namespace equilibrium
         float pitch;
         float yaw;
 
-        float[] motors;
+        int[] motors;
 
         //declare speechrecognizerUI 
         SpeechRecognizerUI recoWithUI;
@@ -78,7 +78,7 @@ namespace equilibrium
             InitializeComponent();
 
 
-            motors = new float[4];
+            motors = new int[4];
 
             //new bluetooth manager
             mConManager = new btConManager();
@@ -118,7 +118,8 @@ namespace equilibrium
             attitude[0]=e.SensorReading.Attitude.Roll;
             attitude[1]=e.SensorReading.Attitude.Pitch;
             
-            motors=mflightbox.compensate(attitude);
+            //motors=mflightbox.compensate(attitude);
+            mConManager.SendCommand(mflightbox.compensate(attitude));
             Dispatcher.BeginInvoke(() =>
             {
 

@@ -138,10 +138,10 @@ namespace BluetoothConnectionManager
                 //dataWriter.WriteByte((byte)commandSize);
                 //dataWriter.WriteByte((byte)64);
 
-                dataWriter.WriteByte((byte)value[0]);
-                dataWriter.WriteByte((byte)value[1]);
-                dataWriter.WriteByte((byte)value[2]);
-                dataWriter.WriteByte((byte)value[3]);
+                dataWriter.WriteInt16((short)value[0]);
+                dataWriter.WriteInt16((short)value[1]);
+                dataWriter.WriteInt16((short)value[2]);
+                dataWriter.WriteInt16((short)value[3]);
                 
                
                 await dataWriter.StoreAsync();
