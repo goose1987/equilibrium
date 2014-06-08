@@ -1,12 +1,18 @@
-﻿<xapCache source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Controller_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="6/7/2014 4:07:51 PM">
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\obj\ARM\Debug\Controller.dll" archivePath="Controller.dll" lastWriteTime="6/7/2014 4:07:51 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="6/7/2014 2:07:34 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="6/7/2014 2:07:30 PM" />
-  <file source="C:\Users\phamh3\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="6/7/2014 3:50:04 PM" />
+﻿<xapCache source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Controller_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="6/7/2014 7:26:13 PM">
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\obj\ARM\Debug\Controller.dll" archivePath="Controller.dll" lastWriteTime="6/7/2014 7:26:12 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="6/7/2014 4:32:16 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="6/7/2014 4:29:17 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\Controller\Bin\ARM\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="6/7/2014 4:29:17 PM" />
 </xapCache>

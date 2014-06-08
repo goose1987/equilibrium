@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using Windows.Networking.Sockets;
 using Windows.Networking.Proximity;
 using Windows.Storage.Streams;
+using System.Windows.Threading;
 
 namespace Controller
 {
@@ -28,6 +29,8 @@ namespace Controller
         bool connected = false;
 
         DataWriter _datawriter;
+
+        DispatcherTimer timer;
         // Constructor
         public MainPage()
         {
@@ -42,7 +45,7 @@ namespace Controller
             PeerFinder.DisplayName = "NewSender";
             PeerFinder.Start();
 
-            
+
             
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -94,6 +97,8 @@ namespace Controller
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             ConnectToPeer(receiver);
+
+
         }
 
         async void ConnectToPeer(PeerInformation peer)
@@ -106,15 +111,21 @@ namespace Controller
                 _peerName = peer.DisplayName;
 
                 connected = true;
+                _datawriter = new DataWriter(_socket.OutputStream);
+               
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            
         }
 
         private void Throttle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            
             if (connected)
             {
                 SendMessage((Int16)e.NewValue);
@@ -124,6 +135,7 @@ namespace Controller
                 ThrottleText.Text = "Throttle:" + e.NewValue.ToString();
 
             });
+            
         }
 
         private async void SendMessage(Int16 message)
@@ -133,10 +145,7 @@ namespace Controller
                 MessageBox.Show("bro you new");
                 return;
             }
-            if (_datawriter == null)
-            {
-                _datawriter = new DataWriter(_socket.OutputStream);
-            }
+            
 
             _datawriter.WriteInt16(message);
             await _datawriter.StoreAsync();
@@ -157,7 +166,7 @@ namespace Controller
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
 
-
+        
     }
 
     public class PeerAppInfo

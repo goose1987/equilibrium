@@ -56,11 +56,11 @@ flightbox::flightbox()
 
 	mroll = 0;
 
-	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)40, (float)5 ,(float)40, REVERSE);
-	m3pid = new PID(&attitude[ROLL], &m3, &rollsetpoint, (float)40, (float)5, (float)40, DIRECT);
+	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)80, (float)1 ,(float)70, REVERSE);
+	m3pid = new PID(&attitude[ROLL], &m3, &rollsetpoint, (float)80, (float)1, (float)70, DIRECT);
 
-	m5pid = new PID(&attitude[PITCH], &m5, &pitchsetpoint, (float)40, (float)5, (float)40, REVERSE);
-	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)40, (float)5, (float)40, DIRECT);
+	m5pid = new PID(&attitude[PITCH], &m5, &pitchsetpoint, (float)80, (float)1, (float)70, REVERSE);
+	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)80, (float)1, (float)70, DIRECT);
 
 	m9pid->SetMode(AUTOMATIC);
 	m3pid->SetMode(AUTOMATIC);

@@ -102,7 +102,7 @@ namespace equilibrium
 
             //mflightbox.motorEvent += mflightbox_motorEvent;
             motion = new Motion();
-            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(5);
+            motion.TimeBetweenUpdates = TimeSpan.FromMilliseconds(10);
             motion.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<MotionReading>>(motion_CurrentValueChanged);
 
 
@@ -126,7 +126,7 @@ namespace equilibrium
         {
             _peerApps = new ObservableCollection<PeerAppInfo>();
 
-            PeerList.ItemsSource = _peerApps;
+            
             PeerFinder.ConnectionRequested += PeerFinder_ConnectionRequested;
 
             PeerFinder.DisplayName = "NewReceivers";
@@ -218,9 +218,20 @@ namespace equilibrium
 
         private async Task<int> GetMessage()
         {
-            
-            await _dataReader.LoadAsync(2);
-            return _dataReader.ReadInt16();
+            if (_dataReader != null)
+            {
+
+                await _dataReader.LoadAsync(2);
+                
+                    
+                    
+                return _dataReader.ReadInt16();
+
+                
+                
+            }
+
+            return (int)mthrottle;
         }
         void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
         {
@@ -231,6 +242,7 @@ namespace equilibrium
             
             motors=mflightbox.compensate(attitude);
             mConManager.SendCommand(motors);
+            
             Dispatcher.BeginInvoke(() =>
             {
 

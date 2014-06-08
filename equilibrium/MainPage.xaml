@@ -53,14 +53,14 @@
             <TextBlock x:Name="rollTextBlock" HorizontalAlignment="Left" Margin="92,102,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="pitchTextBlock" HorizontalAlignment="Left" Margin="92,134,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.296"/>
             <TextBlock x:Name="yawTextBlock" HorizontalAlignment="Left" Margin="92,166,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="249,80,0,0" TextWrapping="Wrap" Text="motor 0" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="249,80,0,0" TextWrapping="Wrap" Text="motor 9" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor0" HorizontalAlignment="Left" Margin="341,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <Button x:Name="ConnectAppToDeviceButton" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="ConnectAppToDeviceButton_Click"/>
             <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="144,0,0,0" TextWrapping="Wrap" Text="linvor" VerticalAlignment="Top" Width="279"/>
             <Button Content="Run" HorizontalAlignment="Left" Margin="0,525,0,0" VerticalAlignment="Top" Click="Button_Click" Width="130"/>
-            <TextBlock HorizontalAlignment="Left" Margin="249,112,0,0" TextWrapping="Wrap" Text="motor 1" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="249,144,0,0" TextWrapping="Wrap" Text="motor 2" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="249,176,0,0" TextWrapping="Wrap" Text="motor 3" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="249,112,0,0" TextWrapping="Wrap" Text="motor 3" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="249,144,0,0" TextWrapping="Wrap" Text="motor 5" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="249,176,0,0" TextWrapping="Wrap" Text="motor 6" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor2" HorizontalAlignment="Left" Margin="341,144,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor1" HorizontalAlignment="Left" Margin="341,112,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor3" HorizontalAlignment="Left" Margin="341,176,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
@@ -76,14 +76,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="163,264,0,0" TextWrapping="Wrap" Text="P" VerticalAlignment="Top" Width="27"/>
             <TextBlock HorizontalAlignment="Left" Margin="163,341,0,0" TextWrapping="Wrap" Text="I" VerticalAlignment="Top" Width="27"/>
             <TextBlock HorizontalAlignment="Left" Margin="163,413,0,0" TextWrapping="Wrap" Text="D" VerticalAlignment="Top" Width="27"/>
-            <ListBox Grid.Row="2" Grid.ColumnSpan="2" x:Name="PeerList" Margin="10,10,0,10">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding DisplayName}" FontSize="{StaticResource PhoneFontSizeMedium}" Margin="40,0,0,0"/>
-                        
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
