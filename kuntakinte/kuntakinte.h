@@ -116,6 +116,7 @@ namespace kuntakinte
 
 		float rollsetpoint;
 		float pitchsetpoint;
+		float yawsetpoint;
 
 
 		float mthrottle;
@@ -125,10 +126,14 @@ namespace kuntakinte
 		float m6;
 		float m9;
 
+		float yawcomp;
+
 		PID* m3pid;
 		PID* m5pid;
 		PID* m6pid;
 		PID* m9pid;
+
+		PID* yawpid;
 		
 		
     public:

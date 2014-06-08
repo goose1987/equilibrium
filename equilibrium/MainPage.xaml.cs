@@ -112,9 +112,7 @@ namespace equilibrium
 
 
 
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += new EventHandler(timer_Tick);
+            
             //timer.Start();
             mthrottle = 0;
 
@@ -239,6 +237,7 @@ namespace equilibrium
             float[] attitude = new float[3];
             attitude[0]=e.SensorReading.Attitude.Roll;
             attitude[1]=e.SensorReading.Attitude.Pitch;
+            attitude[2]=e.SensorReading.DeviceRotationRate.Z;
             
             motors=mflightbox.compensate(attitude);
             mConManager.SendCommand(motors);
@@ -248,6 +247,7 @@ namespace equilibrium
 
                 rollTextBlock.Text = attitude[0].ToString("f5");
                 pitchTextBlock.Text = attitude[1].ToString("f5");
+                yawTextBlock.Text = attitude[2].ToString("f5");
                 motor0.Text = motors[0].ToString("f5");
                 motor1.Text = motors[1].ToString("f5");
                 motor2.Text = motors[2].ToString("f5");
@@ -398,29 +398,10 @@ namespace equilibrium
            mflightbox.throttle((float)e.NewValue);
         }
 
-        void timer_Tick(object sender, EventArgs e)
-        {
+        
 
-            mthrottle += 20;
-            
-
-            if (mthrottle > timedThrottle.Value)
-            {
-                mthrottle = 0;
-                timer.Stop();              
-            }
-            mflightbox.throttle(mthrottle);
-        }
-
-        private void timedThrottle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
+        
 
     }
 

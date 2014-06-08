@@ -56,21 +56,32 @@ flightbox::flightbox()
 
 	mroll = 0;
 
+	rollsetpoint = 0;
+	pitchsetpoint = 0;
+	yawsetpoint = 0;
+
 	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)80, (float)1 ,(float)70, REVERSE);
 	m3pid = new PID(&attitude[ROLL], &m3, &rollsetpoint, (float)80, (float)1, (float)70, DIRECT);
 
 	m5pid = new PID(&attitude[PITCH], &m5, &pitchsetpoint, (float)80, (float)1, (float)70, REVERSE);
 	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)80, (float)1, (float)70, DIRECT);
 
+
+	yawpid = new PID(&attitude[YAW], &yawcomp, &yawsetpoint, (float)50, (float)1, (float)0.1, DIRECT);
+
 	m9pid->SetMode(AUTOMATIC);
 	m3pid->SetMode(AUTOMATIC);
 	m5pid->SetMode(AUTOMATIC);
 	m6pid->SetMode(AUTOMATIC);
+	yawpid->SetMode(AUTOMATIC);
 
 	m9pid->SetSampleTime(10);
 	m3pid->SetSampleTime(10);
 	m5pid->SetSampleTime(10);
 	m6pid->SetSampleTime(10);
+	yawpid->SetSampleTime(10);
+
+	yawpid->SetOutputLimits(-255, 255);
 }
 
 
@@ -85,11 +96,12 @@ Platform::Array<int>^ flightbox::compensate(const Platform::Array<float>^ sensor
 	m3pid->Compute();
 	m5pid->Compute();
 	m6pid->Compute();
+	yawpid->Compute();
 	
-	motors[0] = (int)(mthrottle + m9);
-	motors[1] = (int)(mthrottle + m3);
-	motors[2] = (int)(mthrottle + m5);
-	motors[3] = (int)(mthrottle + m6);
+	motors[0] = (int)(mthrottle + m9+yawcomp);
+	motors[1] = (int)(mthrottle + m3+yawcomp);
+	motors[2] = (int)(mthrottle + m5-yawcomp);
+	motors[3] = (int)(mthrottle + m6-yawcomp);
 
 	return motors;
 

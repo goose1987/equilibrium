@@ -57,19 +57,12 @@
             <TextBlock x:Name="motor0" HorizontalAlignment="Left" Margin="341,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <Button x:Name="ConnectAppToDeviceButton" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="ConnectAppToDeviceButton_Click"/>
             <TextBox x:Name="DeviceName" HorizontalAlignment="Left" Height="72" Margin="144,0,0,0" TextWrapping="Wrap" Text="linvor" VerticalAlignment="Top" Width="279"/>
-            <Button Content="Run" HorizontalAlignment="Left" Margin="0,525,0,0" VerticalAlignment="Top" Click="Button_Click" Width="130"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,112,0,0" TextWrapping="Wrap" Text="motor 3" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,144,0,0" TextWrapping="Wrap" Text="motor 5" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="249,176,0,0" TextWrapping="Wrap" Text="motor 6" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor2" HorizontalAlignment="Left" Margin="341,144,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor1" HorizontalAlignment="Left" Margin="341,112,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <TextBlock x:Name="motor3" HorizontalAlignment="Left" Margin="341,176,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-            <Slider x:Name="timedThrottle" HorizontalAlignment="Left" Margin="-51,321,0,0" VerticalAlignment="Top" Width="259" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Maximum="500" ValueChanged="timedThrottle_ValueChanged">
-                <Slider.RenderTransform>
-                    <CompositeTransform Rotation="-90"/>
-                </Slider.RenderTransform>
-            </Slider>
-            <Button Content="update gain" HorizontalAlignment="Left" Margin="249,525,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
             <TextBox x:Name="pGain" HorizontalAlignment="Left" Height="72" Margin="195,239,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="77"/>
             <TextBox x:Name="iGain" HorizontalAlignment="Left" Height="72" Margin="195,316,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="77"/>
             <TextBox x:Name="dGain" HorizontalAlignment="Left" Height="72" Margin="195,388,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="77"/>
