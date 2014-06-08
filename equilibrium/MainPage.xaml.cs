@@ -237,6 +237,8 @@ namespace equilibrium
             float[] attitude = new float[3];
             attitude[0]=e.SensorReading.Attitude.Roll;
             attitude[1]=e.SensorReading.Attitude.Pitch;
+            //attitude[0] = e.SensorReading.DeviceRotationRate.Y;
+            //attitude[1] = e.SensorReading.DeviceRotationRate.X;
             attitude[2]=e.SensorReading.DeviceRotationRate.Z;
             
             motors=mflightbox.compensate(attitude);
