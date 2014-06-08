@@ -18,7 +18,7 @@ namespace kuntakinte
 	public delegate void inclineCallback(const Platform::Array<float>^ data);
 	public delegate void gyroCallback(const Platform::Array<float>^ data);
 	public delegate void accelCallback(const Platform::Array<float>^ data);
-	public delegate void motorCallback(const Platform::Array<float>^ data);
+	public delegate void motorCallback(const Platform::Array<int>^ data);
 
     public ref class flightbox sealed
     {
@@ -39,33 +39,20 @@ namespace kuntakinte
 		float myaw;
 
 		//angular velocity
-		float wx;
-		float wy;
-		float wz;
-
+	
 		//time
 		float tickgyro;
 		float tickincline;
 		float tickaccel;
 
 		//acceleration
-		float ax;
-		float ay;
-		float az;
+		
 
 		//velocity
-		float vx0;
-		float vy0;
-		float vz0;
-
-		float vx1;
-		float vy1;
-		float vz1;
+		
 
 		//position
-		float xpos;
-		float ypos;
-		float zpos; 
+		
 
 
 		float *attitude;
@@ -126,13 +113,27 @@ namespace kuntakinte
 		float m6;
 		float m9;
 
-		float yawcomp;
+		float wr;
+		float wp;
+		float wy;
 
+		float yawcomp;
+		float rollcomp;
+		float pitchcomp;
+
+		/*
 		PID* m3pid;
 		PID* m5pid;
 		PID* m6pid;
 		PID* m9pid;
+		*/
 
+		PID* wrpid;
+		PID* wppid;
+		PID* wypid;
+
+		PID* rollpid;
+		PID* pitchpid;
 		PID* yawpid;
 		
 		
@@ -164,6 +165,7 @@ namespace kuntakinte
 
 		Platform::Array<int>^ compensate(const Platform::Array<float>^ sensors);
 
+		void OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEventArgs^args);
 		
 
 

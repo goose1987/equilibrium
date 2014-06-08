@@ -96,7 +96,8 @@ namespace equilibrium
             mflightbox = new flightbox(); // initialize a new flightbox
 
 
-            mflightbox.inclineEvent += fb_inclineEvent;
+           
+            mflightbox.motorEvent+=mflightbox_motorEvent;
 
 
 
@@ -242,7 +243,7 @@ namespace equilibrium
             attitude[2]=e.SensorReading.DeviceRotationRate.Z;
             
             motors=mflightbox.compensate(attitude);
-            mConManager.SendCommand(motors);
+            
             
             Dispatcher.BeginInvoke(() =>
             {
@@ -250,10 +251,7 @@ namespace equilibrium
                 rollTextBlock.Text = attitude[0].ToString("f5");
                 pitchTextBlock.Text = attitude[1].ToString("f5");
                 yawTextBlock.Text = attitude[2].ToString("f5");
-                motor0.Text = motors[0].ToString("f5");
-                motor1.Text = motors[1].ToString("f5");
-                motor2.Text = motors[2].ToString("f5");
-                motor3.Text = motors[3].ToString("f5");
+                
 
                 //updateMotorDrive(data);
             });
@@ -261,20 +259,20 @@ namespace equilibrium
 
         }
 
-        void mflightbox_motorEvent(float[] data)
+        void mflightbox_motorEvent(int[] data)
         {
             //throw new NotImplementedException();
             //updateMotorDrive(data);
-            
+            mConManager.SendCommand(data);
            
             Dispatcher.BeginInvoke(() =>
             {
 
-                
-                motor0.Text = data[0].ToString();
-                motor1.Text = data[1].ToString();
-                motor2.Text = data[2].ToString();
-                motor3.Text = data[3].ToString();
+
+                motor0.Text = data[0].ToString("f5");
+                motor1.Text = data[1].ToString("f5");
+                motor2.Text = data[2].ToString("f5");
+                motor3.Text = data[3].ToString("f5");
 
                 //updateMotorDrive(data);
             });
