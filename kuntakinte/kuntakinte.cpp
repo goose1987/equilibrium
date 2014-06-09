@@ -58,13 +58,15 @@ flightbox::flightbox()
 
 	fault = 0;
 
-	attitude = new float[3];
+	attitude = new float[4];
 
 	mroll = 0;
 
 	rollsetpoint = 0;
 	pitchsetpoint = 0;
 	yawsetpoint = 0;
+
+	zsetpoint = 0;
 
 	/*
 	m9pid = new PID(&attitude[ROLL], &m9, &rollsetpoint, (float)26, (float)8 ,(float)16, REVERSE);
@@ -74,14 +76,15 @@ flightbox::flightbox()
 	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)26, (float)8, (float)16, DIRECT);
 	*/
 
-	rollpid = new PID(&attitude[ROLL], &rollcomp, &rollsetpoint, (float)60, (float)20, (float)10, DIRECT);
-	pitchpid = new PID(&attitude[PITCH], &pitchcomp, &pitchsetpoint, (float)60, (float)20, (float)10, DIRECT);
+	rollpid = new PID(&attitude[ROLL], &rollcomp, &rollsetpoint, (float)65, (float)20, (float)10, DIRECT);
+	pitchpid = new PID(&attitude[PITCH], &pitchcomp, &pitchsetpoint, (float)65, (float)20, (float)10, DIRECT);
 	//yawpid = new PID(&attitude[YAW], &wy, &yawsetpoint, (float)50, (float)1, (float)0, DIRECT);
 
 	wrpid = new PID(&omega[ROLL], &rollcomp, &wr, (float)1, (float)0, (float)0, DIRECT);
 	wppid = new PID(&omega[PITCH], &pitchcomp, &wp, (float)0, (float)0, (float)0, DIRECT);
 	wypid = new PID(&omega[YAW], &yawcomp, &yawsetpoint, (float)1, (float)0.01, (float)0, DIRECT);
 	
+	zpid = new PID(&attitude[3], &zcomp, &zsetpoint,(float)100,(float)1,(float)5,DIRECT );
 
 	/*
 	m9pid->SetMode(AUTOMATIC);
@@ -98,6 +101,8 @@ flightbox::flightbox()
 	wppid->SetMode(AUTOMATIC);
 	wypid->SetMode(AUTOMATIC);
 
+	zpid->SetMode(AUTOMATIC);
+
 	/*
 	m9pid->SetSampleTime(10);
 	m3pid->SetSampleTime(10);
@@ -113,6 +118,8 @@ flightbox::flightbox()
 	wppid->SetSampleTime(5);
 	wypid->SetSampleTime(5);
 
+	zpid->SetMode(10);
+
 	rollpid->SetOutputLimits(-255, 255);
 	pitchpid->SetOutputLimits(-255, 255);
 	//yawpid->SetOutputLimits(-255, 255);
@@ -127,7 +134,7 @@ flightbox::flightbox()
 
 
 Platform::Array<int>^ flightbox::compensate(const Platform::Array<float>^ sensors){
-	memcpy(attitude, sensors->Data, 3 * sizeof(float));
+	memcpy(attitude, sensors->Data, 4 * sizeof(float));
 	//mroll = attitude[ROLL];
 	//mpitch = attitude[PITCH];
 	
@@ -139,7 +146,7 @@ Platform::Array<int>^ flightbox::compensate(const Platform::Array<float>^ sensor
 	rollpid->Compute();
 	pitchpid->Compute();
 	//yawpid->Compute();
-	
+	//zpid->Compute();
 	
 
 	return motors;
@@ -156,12 +163,12 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 
 	//wrpid->Compute();
 	//wppid->Compute();
-	//wypid->Compute();
+	wypid->Compute();
 
-	motors[0] = (int)(mthrottle - rollcomp + yawcomp);//motor9
-	motors[1] = (int)(mthrottle + rollcomp + yawcomp);//motor3
-	motors[2] = (int)(mthrottle - pitchcomp - yawcomp);//motor5
-	motors[3] = (int)(mthrottle + pitchcomp - yawcomp);//motor6
+	motors[0] = (int)(mthrottle - rollcomp + yawcomp+zcomp);//motor9
+	motors[1] = (int)(mthrottle + rollcomp + yawcomp+zcomp);//motor3
+	motors[2] = (int)(mthrottle - pitchcomp - yawcomp+zcomp);//motor5
+	motors[3] = (int)(mthrottle + pitchcomp - yawcomp+zcomp);//motor6
 
 	//inclineEvent(omega);
 	motorEvent(motors);
@@ -170,4 +177,8 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 
 void flightbox::throttle(float incr){
 	mthrottle = 1000+incr;
+}
+
+void flightbox::setz(float zaccel){
+	zsetpoint = zaccel;
 }

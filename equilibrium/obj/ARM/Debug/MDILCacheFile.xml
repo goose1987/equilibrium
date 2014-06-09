@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\equilibrium_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="6/8/2014 9:01:00 PM">
-  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.dll" archivePath="equilibrium.dll" lastWriteTime="6/8/2014 9:00:54 PM" />
+﻿<xapCache source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\equilibrium_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="6/8/2014 10:49:32 PM">
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\obj\ARM\Debug\equilibrium.dll" archivePath="equilibrium.dll" lastWriteTime="6/8/2014 10:49:30 PM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="6/7/2014 1:10:11 PM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="6/7/2014 1:10:11 PM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="6/7/2014 1:10:11 PM" />
@@ -8,11 +8,11 @@
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="6/8/2014 11:06:55 AM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="6/7/2014 1:10:11 PM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\equilibrium\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="6/7/2014 1:10:11 PM" />
-  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.winmd" archivePath="kuntakinte.winmd" lastWriteTime="6/8/2014 9:00:51 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.winmd" archivePath="kuntakinte.winmd" lastWriteTime="6/8/2014 10:49:28 PM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libvideo\libvideo.winmd" archivePath="libvideo.winmd" lastWriteTime="6/8/2014 11:06:49 AM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.winmd" archivePath="redbox.winmd" lastWriteTime="6/8/2014 11:06:12 AM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\TextureGraph\TextureGraph.winmd" archivePath="TextureGraph.winmd" lastWriteTime="6/8/2014 11:06:50 AM" />
-  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll" archivePath="kuntakinte.dll" lastWriteTime="6/8/2014 9:00:51 PM" />
+  <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\kuntakinte\kuntakinte.dll" archivePath="kuntakinte.dll" lastWriteTime="6/8/2014 10:49:28 PM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\libvideo\libvideo.dll" archivePath="libvideo.dll" lastWriteTime="6/8/2014 11:06:49 AM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\redbox\redbox.dll" archivePath="redbox.dll" lastWriteTime="6/8/2014 11:06:12 AM" />
   <file source="C:\Users\hoang\Documents\GitHub\equilibrium\ARM\Debug\TextureGraph\TextureGraph.dll" archivePath="TextureGraph.dll" lastWriteTime="6/8/2014 11:06:50 AM" />

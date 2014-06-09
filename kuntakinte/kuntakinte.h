@@ -105,6 +105,7 @@ namespace kuntakinte
 		float pitchsetpoint;
 		float yawsetpoint;
 
+		float zsetpoint;
 
 		float mthrottle;
 
@@ -121,6 +122,7 @@ namespace kuntakinte
 		float rollcomp;
 		float pitchcomp;
 
+		float zcomp;
 		/*
 		PID* m3pid;
 		PID* m5pid;
@@ -135,6 +137,8 @@ namespace kuntakinte
 		PID* rollpid;
 		PID* pitchpid;
 		PID* yawpid;
+
+		PID* zpid;
 		
 		
     public:
@@ -161,7 +165,7 @@ namespace kuntakinte
 
 		void throttle(float incr);
 
-		
+		void setz(float zaccel);
 
 		Platform::Array<int>^ compensate(const Platform::Array<float>^ sensors);
 

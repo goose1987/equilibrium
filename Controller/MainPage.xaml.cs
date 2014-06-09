@@ -70,13 +70,31 @@ namespace Controller
 
                     foreach(var peer in peers){
                         if(peer.DisplayName=="NewReceivers"){
-                            _peerApps.Add(new PeerAppInfo(peer));
+                            //_peerApps.Add(new PeerAppInfo(peer));
 
                             receiver = peer;
                         }
                     }
                     
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            try
+            {
+                _socket = await PeerFinder.ConnectAsync(receiver);
+
+                PeerFinder.Stop();
+                _peerName = receiver.DisplayName;
+
+                connected = true;
+                _datawriter = new DataWriter(_socket.OutputStream);
+
+
             }
             catch (Exception ex)
             {
@@ -89,20 +107,23 @@ namespace Controller
             throw new NotImplementedException();
         }
 
-        private void Refresh_Click(object sender, RoutedEventArgs e)
-        {
-            RefreshPeerAppList();
-        }
+       
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-            ConnectToPeer(receiver);
+            RefreshPeerAppList();
+
+            //ConnectToPeer(receiver);
 
 
         }
 
         async void ConnectToPeer(PeerInformation peer)
         {
+
+
+
+
             try
             {
                 _socket = await PeerFinder.ConnectAsync(peer);

@@ -235,19 +235,21 @@ namespace equilibrium
         void motion_CurrentValueChanged(object sender, SensorReadingEventArgs<MotionReading> e)
         {
 
-            float[] attitude = new float[3];
+            float[] attitude = new float[4];
             attitude[0]=e.SensorReading.Attitude.Roll;
             attitude[1]=e.SensorReading.Attitude.Pitch;
             //attitude[0] = e.SensorReading.DeviceRotationRate.Y;
             //attitude[1] = e.SensorReading.DeviceRotationRate.X;
             attitude[2]=e.SensorReading.DeviceRotationRate.Z;
+            attitude[3] = e.SensorReading.DeviceAcceleration.Z;
+            
             
             motors=mflightbox.compensate(attitude);
             
             
             Dispatcher.BeginInvoke(() =>
             {
-
+                
                 rollTextBlock.Text = attitude[0].ToString("f5");
                 pitchTextBlock.Text = attitude[1].ToString("f5");
                 yawTextBlock.Text = attitude[2].ToString("f5");
