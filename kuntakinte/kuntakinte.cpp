@@ -74,13 +74,13 @@ flightbox::flightbox()
 	m6pid = new PID(&attitude[PITCH], &m6, &pitchsetpoint, (float)26, (float)8, (float)16, DIRECT);
 	*/
 
-	rollpid = new PID(&attitude[ROLL], &wr, &rollsetpoint, (float)26, (float)5, (float)0, DIRECT);
-	pitchpid = new PID(&attitude[PITCH], &wp, &pitchsetpoint, (float)26, (float)5, (float)0, DIRECT);
+	rollpid = new PID(&attitude[ROLL], &rollcomp, &rollsetpoint, (float)60, (float)20, (float)10, DIRECT);
+	pitchpid = new PID(&attitude[PITCH], &pitchcomp, &pitchsetpoint, (float)60, (float)20, (float)10, DIRECT);
 	//yawpid = new PID(&attitude[YAW], &wy, &yawsetpoint, (float)50, (float)1, (float)0, DIRECT);
 
-	wrpid = new PID(&omega[ROLL], &rollcomp, &wr, (float)1, (float)0.1, (float)0, DIRECT);
-	wppid = new PID(&omega[PITCH], &pitchcomp, &wp, (float)1, (float)0.1, (float)0, DIRECT);
-	wypid = new PID(&omega[YAW], &yawcomp, &yawsetpoint, (float)1, (float)0.1, (float)0, DIRECT);
+	wrpid = new PID(&omega[ROLL], &rollcomp, &wr, (float)1, (float)0, (float)0, DIRECT);
+	wppid = new PID(&omega[PITCH], &pitchcomp, &wp, (float)0, (float)0, (float)0, DIRECT);
+	wypid = new PID(&omega[YAW], &yawcomp, &yawsetpoint, (float)1, (float)0.01, (float)0, DIRECT);
 	
 
 	/*
@@ -113,8 +113,8 @@ flightbox::flightbox()
 	wppid->SetSampleTime(5);
 	wypid->SetSampleTime(5);
 
-	rollpid->SetOutputLimits(-10, 10);
-	pitchpid->SetOutputLimits(-10, 10);
+	rollpid->SetOutputLimits(-255, 255);
+	pitchpid->SetOutputLimits(-255, 255);
 	//yawpid->SetOutputLimits(-255, 255);
 
 	wrpid->SetOutputLimits(-255, 255);
@@ -154,13 +154,13 @@ void flightbox::OnGyroReadingChanged(Gyrometer^sender, GyrometerReadingChangedEv
 	omega[PITCH] = args->Reading->AngularVelocityX;
 	omega[YAW] = args->Reading->AngularVelocityZ;
 
-	wrpid->Compute();
-	wppid->Compute();
-	wypid->Compute();
+	//wrpid->Compute();
+	//wppid->Compute();
+	//wypid->Compute();
 
 	motors[0] = (int)(mthrottle - rollcomp + yawcomp);//motor9
 	motors[1] = (int)(mthrottle + rollcomp + yawcomp);//motor3
-	motors[2] = (int)(mthrottle + pitchcomp - yawcomp);//motor5
+	motors[2] = (int)(mthrottle - pitchcomp - yawcomp);//motor5
 	motors[3] = (int)(mthrottle + pitchcomp - yawcomp);//motor6
 
 	//inclineEvent(omega);
